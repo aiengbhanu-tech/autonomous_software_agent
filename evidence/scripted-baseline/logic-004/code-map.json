@@ -1,0 +1,15 @@
+[
+  {
+    "path": "src/solution.py",
+    "sha256": "94c12cc1f78d5f368bda374e32bc53a6b7d5284fc50d42627f5e0cd0f35ed216",
+    "lines": 2,
+    "symbols": [
+      {
+        "name": "strictly_between",
+        "line": 1,
+        "kind": "FunctionDef"
+      }
+    ],
+    "imports": []
+  }
+]

@@ -1,0 +1,6 @@
+--- a/src/solution.py
++++ b/src/solution.py
+@@ -1,2 +1,2 @@
+ def ranges_overlap(a, b, c, d):
+-    return a < d and c < b
++    return a <= d and c <= b

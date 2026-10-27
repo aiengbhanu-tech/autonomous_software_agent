@@ -1,0 +1,6 @@
+--- a/src/solution.py
++++ b/src/solution.py
+@@ -1,2 +1,2 @@
+ def can_write(active, role):
+-    return active or role == 'admin'
++    return active and role in ['admin', 'editor']

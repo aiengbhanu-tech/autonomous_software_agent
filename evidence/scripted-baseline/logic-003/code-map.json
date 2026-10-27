@@ -1,0 +1,15 @@
+[
+  {
+    "path": "src/solution.py",
+    "sha256": "fdb4c8f8a9b9399e67ee0ccc98b971324b65c1af2d3ca245d0368b90f352a3cf",
+    "lines": 2,
+    "symbols": [
+      {
+        "name": "is_weekend",
+        "line": 1,
+        "kind": "FunctionDef"
+      }
+    ],
+    "imports": []
+  }
+]

@@ -1,0 +1,6 @@
+--- a/src/solution.py
++++ b/src/solution.py
+@@ -1,2 +1,2 @@
+ def last_or_none(items):
+-    return items[0] if items else None
++    return items[-1] if items else None

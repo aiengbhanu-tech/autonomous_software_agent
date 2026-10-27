@@ -1,0 +1,6 @@
+--- a/src/solution.py
++++ b/src/solution.py
+@@ -1,2 +1,2 @@
+ def clean_token(token):
+-    return token
++    return token.strip()

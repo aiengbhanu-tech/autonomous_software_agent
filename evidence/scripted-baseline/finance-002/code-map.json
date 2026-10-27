@@ -1,0 +1,15 @@
+[
+  {
+    "path": "src/solution.py",
+    "sha256": "da9316cfbb7af50ca9952507ca002ab8bc53d2a69354ab79b3aeaf96081810fb",
+    "lines": 2,
+    "symbols": [
+      {
+        "name": "to_cents",
+        "line": 1,
+        "kind": "FunctionDef"
+      }
+    ],
+    "imports": []
+  }
+]

@@ -1,0 +1,15 @@
+[
+  {
+    "path": "src/solution.py",
+    "sha256": "83eaa841655323ed37120ab5978c6730374a05ca0a97d4e168cfed0eaad05ca2",
+    "lines": 2,
+    "symbols": [
+      {
+        "name": "celsius_to_f",
+        "line": 1,
+        "kind": "FunctionDef"
+      }
+    ],
+    "imports": []
+  }
+]

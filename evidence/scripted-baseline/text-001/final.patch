@@ -1,0 +1,6 @@
+--- a/src/solution.py
++++ b/src/solution.py
+@@ -1,2 +1,2 @@
+ def slug(text):
+-    return text.replace(' ', '-')
++    return text.strip().lower().replace(' ', '-')

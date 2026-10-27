@@ -1,0 +1,15 @@
+[
+  {
+    "path": "src/solution.py",
+    "sha256": "2cd6c60a6021da803328b80d74ce62761a415f90a976673762465f6d6a3404ee",
+    "lines": 2,
+    "symbols": [
+      {
+        "name": "average",
+        "line": 1,
+        "kind": "FunctionDef"
+      }
+    ],
+    "imports": []
+  }
+]

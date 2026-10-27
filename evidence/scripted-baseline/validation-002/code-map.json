@@ -1,0 +1,15 @@
+[
+  {
+    "path": "src/solution.py",
+    "sha256": "992b3041079c35a4f9e955ed36ff0f2f46ecf19a5ade2c1555fcc1ee479e4598",
+    "lines": 2,
+    "symbols": [
+      {
+        "name": "valid_port",
+        "line": 1,
+        "kind": "FunctionDef"
+      }
+    ],
+    "imports": []
+  }
+]

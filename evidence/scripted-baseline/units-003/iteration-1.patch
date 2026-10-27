@@ -1,0 +1,6 @@
+--- a/src/solution.py
++++ b/src/solution.py
+@@ -1,2 +1,2 @@
+ def minutes_to_seconds(minutes):
+-    return minutes // 60
++    return minutes * 60

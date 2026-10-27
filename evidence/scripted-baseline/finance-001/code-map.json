@@ -1,0 +1,15 @@
+[
+  {
+    "path": "src/solution.py",
+    "sha256": "0c5eef1c2f50ba7c23de24ec5111cd8ff6fc90c037690e653bb43f1c5d2ecb4b",
+    "lines": 2,
+    "symbols": [
+      {
+        "name": "with_tax",
+        "line": 1,
+        "kind": "FunctionDef"
+      }
+    ],
+    "imports": []
+  }
+]

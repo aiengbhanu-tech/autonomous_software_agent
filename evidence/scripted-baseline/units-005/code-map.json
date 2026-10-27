@@ -1,0 +1,15 @@
+[
+  {
+    "path": "src/solution.py",
+    "sha256": "58ac1d0205eebd1216b2863791ce5200e750c199971a61e42c65561c8d1446e3",
+    "lines": 2,
+    "symbols": [
+      {
+        "name": "speed",
+        "line": 1,
+        "kind": "FunctionDef"
+      }
+    ],
+    "imports": []
+  }
+]

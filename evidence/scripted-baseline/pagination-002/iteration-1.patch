@@ -1,0 +1,6 @@
+--- a/src/solution.py
++++ b/src/solution.py
+@@ -1,2 +1,2 @@
+ def page_count(total, size):
+-    return total // size
++    return (total + size - 1) // size

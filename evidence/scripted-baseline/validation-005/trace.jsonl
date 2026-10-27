@@ -1,0 +1,10 @@
+{"sequence": 1, "stage": "repo_analyzer", "elapsed_s": 0.000895, "code_map": [{"path": "src/solution.py", "sha256": "4947973c68a8e501fd95f157bff1c2d0f8d1c95ab16ce1aff8f0e0ab7a293205", "lines": 2, "symbols": [{"name": "is_even", "line": 1, "kind": "FunctionDef"}], "imports": []}], "repository_sha256": "c4d8174d6824a5c33d8b6034e54000c1c9fa668751e2416d5a6a316efb271ac3"}
+{"sequence": 2, "stage": "baseline_tests", "elapsed_s": 0.001247, "result": {"status": "failed", "passed": 0, "failed": 3, "output": "case 1: AssertionError: expected True; got False\ncase 2: AssertionError: expected False; got True\ncase 3: AssertionError: expected True; got False", "duration_s": 7.160699988162378e-05, "backend": "bounded-ast"}}
+{"sequence": 3, "stage": "planner", "elapsed_s": 0.001315, "plan": {"hypothesis": "SCRIPTED ORACLE: apply a supplied reference solution to validate orchestration.", "steps": ["Reproduce failure", "Apply fixture patch", "Run fixed checks", "Review result"]}}
+{"sequence": 4, "stage": "code_search", "elapsed_s": 0.001627, "paths": ["src/solution.py"]}
+{"sequence": 5, "stage": "hypothesis", "elapsed_s": 0.001663, "text": "SCRIPTED ORACLE: supplied reference patch.", "iteration": 1}
+{"sequence": 6, "stage": "patch_generator", "elapsed_s": 0.002004, "iteration": 1, "paths": ["src/solution.py"]}
+{"sequence": 7, "stage": "sandbox_tests", "elapsed_s": 0.002179, "iteration": 1, "result": {"status": "passed", "passed": 3, "failed": 0, "output": "", "duration_s": 8.291499989354634e-05, "backend": "bounded-ast"}}
+{"sequence": 8, "stage": "hidden_grader", "elapsed_s": 0.002326, "iteration": 1, "result": {"status": "passed", "passed": 2, "failed": 0, "output": "", "duration_s": 4.9644999990050565e-05, "backend": "bounded-ast"}}
+{"sequence": 9, "stage": "critic", "elapsed_s": 0.002356, "iteration": 1, "decision": "accept", "reason": "All configured checks passed.", "feedback": ""}
+{"sequence": 10, "stage": "pr_draft", "elapsed_s": 0.002794, "status": "resolved", "patch_sha256": "b6e0e9a75f967e3f9fceff8205ec45036ba89ddfc7c115622c1a84c233ce979b"}

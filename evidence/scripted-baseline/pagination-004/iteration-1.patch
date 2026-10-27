@@ -1,0 +1,6 @@
+--- a/src/solution.py
++++ b/src/solution.py
+@@ -1,2 +1,2 @@
+ def has_next(page, size, total):
+-    return page * size <= total
++    return page * size < total

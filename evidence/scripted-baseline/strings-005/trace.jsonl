@@ -1,0 +1,10 @@
+{"sequence": 1, "stage": "repo_analyzer", "elapsed_s": 0.000835, "code_map": [{"path": "src/solution.py", "sha256": "7dd6be868be746fc4ddf4e7bfc69b1a776ab5bc96984a5ece809cc26b410eb47", "lines": 2, "symbols": [{"name": "is_palindrome", "line": 1, "kind": "FunctionDef"}], "imports": []}], "repository_sha256": "e0ad163b997435cb3f6fbf9cb2a708f48265eb4601060103147e5f2f21c50ecb"}
+{"sequence": 2, "stage": "baseline_tests", "elapsed_s": 0.001087, "result": {"status": "failed", "passed": 0, "failed": 3, "output": "case 1: AssertionError: expected True; got False\ncase 2: AssertionError: expected False; got True\ncase 3: AssertionError: expected True; got False", "duration_s": 8.33159999729105e-05, "backend": "bounded-ast"}}
+{"sequence": 3, "stage": "planner", "elapsed_s": 0.001153, "plan": {"hypothesis": "SCRIPTED ORACLE: apply a supplied reference solution to validate orchestration.", "steps": ["Reproduce failure", "Apply fixture patch", "Run fixed checks", "Review result"]}}
+{"sequence": 4, "stage": "code_search", "elapsed_s": 0.001526, "paths": ["src/solution.py"]}
+{"sequence": 5, "stage": "hypothesis", "elapsed_s": 0.001561, "text": "SCRIPTED ORACLE: supplied reference patch.", "iteration": 1}
+{"sequence": 6, "stage": "patch_generator", "elapsed_s": 0.002139, "iteration": 1, "paths": ["src/solution.py"]}
+{"sequence": 7, "stage": "sandbox_tests", "elapsed_s": 0.002395, "iteration": 1, "result": {"status": "passed", "passed": 3, "failed": 0, "output": "", "duration_s": 0.00013933899981566356, "backend": "bounded-ast"}}
+{"sequence": 8, "stage": "hidden_grader", "elapsed_s": 0.002733, "iteration": 1, "result": {"status": "passed", "passed": 2, "failed": 0, "output": "", "duration_s": 6.61090000448894e-05, "backend": "bounded-ast"}}
+{"sequence": 9, "stage": "critic", "elapsed_s": 0.002768, "iteration": 1, "decision": "accept", "reason": "All configured checks passed.", "feedback": ""}
+{"sequence": 10, "stage": "pr_draft", "elapsed_s": 0.002995, "status": "resolved", "patch_sha256": "42501a2fdf5e6ad055fbfd0dd6f625e55b6ea9838cca2fd6758ff9333b41d284"}

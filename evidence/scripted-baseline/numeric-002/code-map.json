@@ -1,0 +1,15 @@
+[
+  {
+    "path": "src/solution.py",
+    "sha256": "e04656d92aad1be9fda345dee731611814b26a1ecb6a59715aeb49e08fdca511",
+    "lines": 2,
+    "symbols": [
+      {
+        "name": "discount_price",
+        "line": 1,
+        "kind": "FunctionDef"
+      }
+    ],
+    "imports": []
+  }
+]

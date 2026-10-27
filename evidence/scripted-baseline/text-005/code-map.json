@@ -1,0 +1,15 @@
+[
+  {
+    "path": "src/solution.py",
+    "sha256": "e740490a8c902bf064e3a5023575b1b24eed89fc5cc4b14eecf4201ef1c935be",
+    "lines": 2,
+    "symbols": [
+      {
+        "name": "normalize_email",
+        "line": 1,
+        "kind": "FunctionDef"
+      }
+    ],
+    "imports": []
+  }
+]

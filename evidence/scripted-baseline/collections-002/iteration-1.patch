@@ -1,0 +1,6 @@
+--- a/src/solution.py
++++ b/src/solution.py
+@@ -1,2 +1,2 @@
+ def sorted_unique(items):
+-    return sorted(items)
++    return sorted(set(items))

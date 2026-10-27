@@ -1,0 +1,10 @@
+{"sequence": 1, "stage": "repo_analyzer", "elapsed_s": 0.000849, "code_map": [{"path": "src/solution.py", "sha256": "e740490a8c902bf064e3a5023575b1b24eed89fc5cc4b14eecf4201ef1c935be", "lines": 2, "symbols": [{"name": "normalize_email", "line": 1, "kind": "FunctionDef"}], "imports": []}], "repository_sha256": "e9a773ce64574fc992daf1df93b9574a41e249aef6727eef218ed3e092ab0806"}
+{"sequence": 2, "stage": "baseline_tests", "elapsed_s": 0.001074, "result": {"status": "failed", "passed": 1, "failed": 2, "output": "case 1: AssertionError: expected 'a@b.com'; got ' a@b.com '\ncase 3: AssertionError: expected 'a@b.c'; got '\\ta@b.c\\n'", "duration_s": 6.018099998073012e-05, "backend": "bounded-ast"}}
+{"sequence": 3, "stage": "planner", "elapsed_s": 0.001139, "plan": {"hypothesis": "SCRIPTED ORACLE: apply a supplied reference solution to validate orchestration.", "steps": ["Reproduce failure", "Apply fixture patch", "Run fixed checks", "Review result"]}}
+{"sequence": 4, "stage": "code_search", "elapsed_s": 0.001367, "paths": ["src/solution.py"]}
+{"sequence": 5, "stage": "hypothesis", "elapsed_s": 0.001394, "text": "SCRIPTED ORACLE: supplied reference patch.", "iteration": 1}
+{"sequence": 6, "stage": "patch_generator", "elapsed_s": 0.001852, "iteration": 1, "paths": ["src/solution.py"]}
+{"sequence": 7, "stage": "sandbox_tests", "elapsed_s": 0.001997, "iteration": 1, "result": {"status": "passed", "passed": 3, "failed": 0, "output": "", "duration_s": 8.847300000525138e-05, "backend": "bounded-ast"}}
+{"sequence": 8, "stage": "hidden_grader", "elapsed_s": 0.002112, "iteration": 1, "result": {"status": "passed", "passed": 2, "failed": 0, "output": "", "duration_s": 4.777200001626625e-05, "backend": "bounded-ast"}}
+{"sequence": 9, "stage": "critic", "elapsed_s": 0.002253, "iteration": 1, "decision": "accept", "reason": "All configured checks passed.", "feedback": ""}
+{"sequence": 10, "stage": "pr_draft", "elapsed_s": 0.002627, "status": "resolved", "patch_sha256": "2cfa4ae996b4542ae29039e44625001f955cbf8a800b5569b58ff3ab145ee3e9"}

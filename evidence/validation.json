@@ -1,0 +1,28 @@
+{
+  "unit_test_exit_code": 0,
+  "unit_tests_executed": 36,
+  "docker_tests_skipped": 4,
+  "docker_available": false,
+  "live_model_run": false,
+  "scripted_summary": {
+    "issues": 50,
+    "attempted": 50,
+    "resolved": 50,
+    "resolved_percent": 100.0,
+    "tests_passed": 251,
+    "tests_failed": 0,
+    "tests_not_run": 0,
+    "tests_expected": 251,
+    "tests_passed_percent": 100.0,
+    "iterations_per_problem": 1.02,
+    "tokens_per_problem": 0,
+    "token_usage_complete": true,
+    "total_model_cost_usd": 0.0,
+    "model_usd_per_resolved_issue": 0.0,
+    "mean_latency_s": 0.0026850593200060755,
+    "p95_latency_s": 0.003949787000010474,
+    "statuses": {
+      "resolved": 50
+    }
+  }
+}

@@ -1,0 +1,15 @@
+[
+  {
+    "path": "src/solution.py",
+    "sha256": "a8af888711b1f2bd23d3f1399eab3ce43bab4e8c07a1cfed17537a7ca6e074e0",
+    "lines": 2,
+    "symbols": [
+      {
+        "name": "clamp",
+        "line": 1,
+        "kind": "FunctionDef"
+      }
+    ],
+    "imports": []
+  }
+]

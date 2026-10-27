@@ -1,0 +1,6 @@
+--- a/src/solution.py
++++ b/src/solution.py
+@@ -1,2 +1,2 @@
+ def change_due(paid, total):
+-    return total - paid
++    return paid - total

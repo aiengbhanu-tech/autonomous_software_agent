@@ -1,0 +1,15 @@
+[
+  {
+    "path": "src/solution.py",
+    "sha256": "12751bf43ff192e989658184fa80288e3e744c7c3bc2e7ae85d591d8d31a125f",
+    "lines": 2,
+    "symbols": [
+      {
+        "name": "ranges_overlap",
+        "line": 1,
+        "kind": "FunctionDef"
+      }
+    ],
+    "imports": []
+  }
+]

@@ -1,0 +1,10 @@
+{"sequence": 1, "stage": "repo_analyzer", "elapsed_s": 0.000878, "code_map": [{"path": "src/solution.py", "sha256": "4e2533574669c39bf7bb9e6f2b741a6b9feff15f1798060a62cde1f196931ca4", "lines": 2, "symbols": [{"name": "split_csv", "line": 1, "kind": "FunctionDef"}], "imports": []}], "repository_sha256": "29a2606eee48fddac2a2873a22ab45fde4aae84e5b1b44ae4ae10b0dd6eeff72"}
+{"sequence": 2, "stage": "baseline_tests", "elapsed_s": 0.00111, "result": {"status": "failed", "passed": 1, "failed": 2, "output": "case 1: AssertionError: expected ['a', 'b']; got ['a,b']\ncase 2: AssertionError: expected ['a', '', 'b']; got ['a,,b']", "duration_s": 7.077600002958206e-05, "backend": "bounded-ast"}}
+{"sequence": 3, "stage": "planner", "elapsed_s": 0.001175, "plan": {"hypothesis": "SCRIPTED ORACLE: apply a supplied reference solution to validate orchestration.", "steps": ["Reproduce failure", "Apply fixture patch", "Run fixed checks", "Review result"]}}
+{"sequence": 4, "stage": "code_search", "elapsed_s": 0.001653, "paths": ["src/solution.py"]}
+{"sequence": 5, "stage": "hypothesis", "elapsed_s": 0.001695, "text": "SCRIPTED ORACLE: supplied reference patch.", "iteration": 1}
+{"sequence": 6, "stage": "patch_generator", "elapsed_s": 0.002219, "iteration": 1, "paths": ["src/solution.py"]}
+{"sequence": 7, "stage": "sandbox_tests", "elapsed_s": 0.002433, "iteration": 1, "result": {"status": "passed", "passed": 3, "failed": 0, "output": "", "duration_s": 0.00014523800018650945, "backend": "bounded-ast"}}
+{"sequence": 8, "stage": "hidden_grader", "elapsed_s": 0.002608, "iteration": 1, "result": {"status": "passed", "passed": 2, "failed": 0, "output": "", "duration_s": 5.781700019724667e-05, "backend": "bounded-ast"}}
+{"sequence": 9, "stage": "critic", "elapsed_s": 0.002653, "iteration": 1, "decision": "accept", "reason": "All configured checks passed.", "feedback": ""}
+{"sequence": 10, "stage": "pr_draft", "elapsed_s": 0.003029, "status": "resolved", "patch_sha256": "05ee3c7c0f5785d9b5fea91bad3857b3defc1b7ed4667b1800b5d563147168ed"}

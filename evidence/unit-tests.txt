@@ -1,0 +1,45 @@
+test_reported_usage_cost (test_core.AccountingTests.test_reported_usage_cost) ... ok
+test_total_spend_includes_failed_problems (test_core.AccountingTests.test_total_spend_includes_failed_problems) ... ok
+test_unknown_rates_are_not_zero (test_core.AccountingTests.test_unknown_rates_are_not_zero) ... ok
+test_unknown_usage_cost (test_core.AccountingTests.test_unknown_usage_cost) ... ok
+test_command_has_hardening_and_fixed_runner (test_core.DockerPolicyTests.test_command_has_hardening_and_fixed_runner) ... ok
+test_no_host_execution_fallback (test_core.DockerPolicyTests.test_no_host_execution_fallback) ... ok
+test_non_https_provider_url_denied (test_core.DockerPolicyTests.test_non_https_provider_url_denied) ... ok
+test_token_reservation_stops_before_network (test_core.DockerPolicyTests.test_token_reservation_stops_before_network) ... ok
+test_already_green_not_counted_as_resolved (test_core.EngineTests.test_already_green_not_counted_as_resolved) ... ok
+test_failure_iteration_pass_and_pr (test_core.EngineTests.test_failure_iteration_pass_and_pr) ... ok
+test_iteration_cap (test_core.EngineTests.test_iteration_cap) ... ok
+test_oracles_never_in_provider_context (test_core.EngineTests.test_oracles_never_in_provider_context) ... ok
+test_all_fifty_reference_and_broken_contracts (test_core.FixtureTests.test_all_fifty_reference_and_broken_contracts) ... ok
+test_generator_is_reproducible (test_core.FixtureTests.test_generator_is_reproducible) ... ok
+test_aggregate_nested_expansion_is_bounded (test_core.InterpreterTests.test_aggregate_nested_expansion_is_bounded) ... ok
+test_aggregate_string_expansion_is_bounded (test_core.InterpreterTests.test_aggregate_string_expansion_is_bounded) ... ok
+test_depth_budget (test_core.InterpreterTests.test_depth_budget) ... ok
+test_hidden_values_not_in_feedback (test_core.InterpreterTests.test_hidden_values_not_in_feedback) ... ok
+test_host_access_and_code_execution_are_denied (test_core.InterpreterTests.test_host_access_and_code_execution_are_denied) ... ok
+test_imports_loops_assignments_and_defaults_denied (test_core.InterpreterTests.test_imports_loops_assignments_and_defaults_denied) ... ok
+test_unicode_boundary (test_core.InterpreterTests.test_unicode_boundary) ... ok
+test_zero_tests_not_green (test_core.InterpreterTests.test_zero_tests_not_green) ... ok
+test_all_validated_before_write (test_core.PatchTests.test_all_validated_before_write) ... ok
+test_denied_paths (test_core.PatchTests.test_denied_paths) ... ok
+test_duplicate_edit (test_core.PatchTests.test_duplicate_edit) ... ok
+test_invalid_python (test_core.PatchTests.test_invalid_python) ... ok
+test_preimage_hash (test_core.PatchTests.test_preimage_hash) ... ok
+test_schema_does_not_allow_commands (test_core.PatchTests.test_schema_does_not_allow_commands) ... ok
+test_snapshot_and_code_map_do_not_execute_top_level (test_core.PatchTests.test_snapshot_and_code_map_do_not_execute_top_level) ... ok
+test_snapshot_rejects_links (test_core.PatchTests.test_snapshot_rejects_links) ... ok
+test_source_edit_and_diff (test_core.PatchTests.test_source_edit_and_diff) ... ok
+test_symlink_escape (test_core.PatchTests.test_symlink_escape) ... ok
+test_output_flood_stopped (test_docker_integration.DockerIntegrationTests.test_output_flood_stopped) ... skipped 'requires Docker sandbox image'
+test_readonly_mount_network_and_secret_isolation (test_docker_integration.DockerIntegrationTests.test_readonly_mount_network_and_secret_isolation) ... skipped 'requires Docker sandbox image'
+test_real_endpoint_fail_patch_pass (test_docker_integration.DockerIntegrationTests.test_real_endpoint_fail_patch_pass) ... skipped 'requires Docker sandbox image'
+test_timeout_kills_container (test_docker_integration.DockerIntegrationTests.test_timeout_kills_container) ... skipped 'requires Docker sandbox image'
+test_bad_output_still_records_billable_usage (test_provider.ProviderTests.test_bad_output_still_records_billable_usage) ... ok
+test_llm_adapter_plan_patch_failure_revision_accounting (test_provider.ProviderTests.test_llm_adapter_plan_patch_failure_revision_accounting) ... ok
+test_missing_usage_blocks_further_calls (test_provider.ProviderTests.test_missing_usage_blocks_further_calls) ... ok
+test_redirects_rejected (test_provider.ProviderTests.test_redirects_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 40 tests in 0.052s
+
+OK (skipped=4)

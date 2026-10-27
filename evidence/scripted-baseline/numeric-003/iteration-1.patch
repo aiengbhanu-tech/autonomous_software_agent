@@ -1,0 +1,6 @@
+--- a/src/solution.py
++++ b/src/solution.py
+@@ -1,2 +1,2 @@
+ def average(values):
+-    return sum(values) / (len(values) + 1)
++    return sum(values) / len(values) if values else 0.0

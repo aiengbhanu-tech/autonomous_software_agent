@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "forgefix"
+version = "0.1.0"
+description = "Permission-limited software repair agent and controlled benchmark"
+requires-python = ">=3.11"
+dependencies = []
+license = {text = "MIT"}
+
+[project.scripts]
+forgefix = "forgefix.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["forgefix*"]
+

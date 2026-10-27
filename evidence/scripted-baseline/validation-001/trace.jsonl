@@ -1,0 +1,10 @@
+{"sequence": 1, "stage": "repo_analyzer", "elapsed_s": 0.00081, "code_map": [{"path": "src/solution.py", "sha256": "69255a7e4dd3c3fac08d4a4c87b28e0528a300267c8b899691c76082881328d7", "lines": 2, "symbols": [{"name": "age_allowed", "line": 1, "kind": "FunctionDef"}], "imports": []}], "repository_sha256": "964507a56c8c24f79c79b216c267c2b5d538877307415e86bf303ec61949eaf9"}
+{"sequence": 2, "stage": "baseline_tests", "elapsed_s": 0.001098, "result": {"status": "failed", "passed": 1, "failed": 2, "output": "case 1: AssertionError: expected True; got False\ncase 2: AssertionError: expected True; got False", "duration_s": 0.00012024100010421535, "backend": "bounded-ast"}}
+{"sequence": 3, "stage": "planner", "elapsed_s": 0.001179, "plan": {"hypothesis": "SCRIPTED ORACLE: apply a supplied reference solution to validate orchestration.", "steps": ["Reproduce failure", "Apply fixture patch", "Run fixed checks", "Review result"]}}
+{"sequence": 4, "stage": "code_search", "elapsed_s": 0.001411, "paths": ["src/solution.py"]}
+{"sequence": 5, "stage": "hypothesis", "elapsed_s": 0.001441, "text": "SCRIPTED ORACLE: supplied reference patch.", "iteration": 1}
+{"sequence": 6, "stage": "patch_generator", "elapsed_s": 0.001946, "iteration": 1, "paths": ["src/solution.py"]}
+{"sequence": 7, "stage": "sandbox_tests", "elapsed_s": 0.002215, "iteration": 1, "result": {"status": "passed", "passed": 3, "failed": 0, "output": "", "duration_s": 0.00011450199986029475, "backend": "bounded-ast"}}
+{"sequence": 8, "stage": "hidden_grader", "elapsed_s": 0.002334, "iteration": 1, "result": {"status": "passed", "passed": 2, "failed": 0, "output": "", "duration_s": 4.293400002097769e-05, "backend": "bounded-ast"}}
+{"sequence": 9, "stage": "critic", "elapsed_s": 0.002364, "iteration": 1, "decision": "accept", "reason": "All configured checks passed.", "feedback": ""}
+{"sequence": 10, "stage": "pr_draft", "elapsed_s": 0.002847, "status": "resolved", "patch_sha256": "945bfabb55316551458d12247798d979605fb2e9b011c0613ed48edac3e1b1d3"}

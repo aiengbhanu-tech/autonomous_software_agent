@@ -1,0 +1,6 @@
+--- a/src/solution.py
++++ b/src/solution.py
+@@ -1,2 +1,2 @@
+ def remove_prefix(text, prefix):
+-    return text.replace(prefix, '')
++    return text[len(prefix):] if text.startswith(prefix) else text

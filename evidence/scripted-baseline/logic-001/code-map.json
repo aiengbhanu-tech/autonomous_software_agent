@@ -1,0 +1,15 @@
+[
+  {
+    "path": "src/solution.py",
+    "sha256": "163daea7f399fee0d4f7412d9adfb3bd1de36a009c50359fb6f5938a5d317e24",
+    "lines": 2,
+    "symbols": [
+      {
+        "name": "exclusive_or",
+        "line": 1,
+        "kind": "FunctionDef"
+      }
+    ],
+    "imports": []
+  }
+]

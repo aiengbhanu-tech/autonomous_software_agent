@@ -1,0 +1,2427 @@
+{
+  "version": "1.0",
+  "label": "controlled-microbugs-v1",
+  "tasks": [
+    {
+      "id": "auth-001",
+      "category": "auth",
+      "function": "authentication_status",
+      "issue": "The authentication endpoint sometimes returns 500 when passwords exceed the supported length. Diagnose and fix it. Contract: strings of at most 72 UTF-8 bytes return 200; longer strings return 422. Never truncate. Preserve the exact boundary.",
+      "initial_source": "def authentication_status(password):\n    return 200 if len(password.encode('utf-8')) <= 72 else 500\n",
+      "reference_source": "def authentication_status(password):\n    return 200 if len(password.encode('utf-8')) <= 72 else 422\n",
+      "public_cases": [
+        {
+          "args": [
+            "abc"
+          ],
+          "expected": 200
+        },
+        {
+          "args": [
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          ],
+          "expected": 422
+        },
+        {
+          "args": [
+            "🔐🔐🔐🔐🔐🔐🔐🔐🔐🔐🔐🔐🔐🔐🔐🔐🔐🔐🔐"
+          ],
+          "expected": 422
+        }
+      ],
+      "hidden_cases": [
+        {
+          "args": [
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          ],
+          "expected": 200
+        },
+        {
+          "args": [
+            "éééééééééééééééééééééééééééééééééééé"
+          ],
+          "expected": 200
+        },
+        {
+          "args": [
+            "ééééééééééééééééééééééééééééééééééééé"
+          ],
+          "expected": 422
+        }
+      ]
+    },
+    {
+      "id": "auth-002",
+      "category": "auth",
+      "function": "clean_token",
+      "issue": "Token parsing preserves accidental edge whitespace. Strip whitespace from both ends without changing interior spaces.",
+      "initial_source": "def clean_token(token):\n    return token\n",
+      "reference_source": "def clean_token(token):\n    return token.strip()\n",
+      "public_cases": [
+        {
+          "args": [
+            " abc "
+          ],
+          "expected": "abc"
+        },
+        {
+          "args": [
+            "\tabc\n"
+          ],
+          "expected": "abc"
+        },
+        {
+          "args": [
+            "a b"
+          ],
+          "expected": "a b"
+        }
+      ],
+      "hidden_cases": [
+        {
+          "args": [
+            "   "
+          ],
+          "expected": ""
+        },
+        {
+          "args": [
+            "x"
+          ],
+          "expected": "x"
+        }
+      ]
+    },
+    {
+      "id": "auth-003",
+      "category": "auth",
+      "function": "is_bearer",
+      "issue": "Bearer prefix check accepts bare tokens. Require the exact case-sensitive prefix 'Bearer ' including its space.",
+      "initial_source": "def is_bearer(header):\n    return header.startswith('Bearer')\n",
+      "reference_source": "def is_bearer(header):\n    return header.startswith('Bearer ')\n",
+      "public_cases": [
+        {
+          "args": [
+            "Bearer abc"
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "Bearerabc"
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            "Basic x"
+          ],
+          "expected": false
+        }
+      ],
+      "hidden_cases": [
+        {
+          "args": [
+            "Bearer"
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            "bearer x"
+          ],
+          "expected": false
+        }
+      ]
+    },
+    {
+      "id": "auth-004",
+      "category": "auth",
+      "function": "can_admin",
+      "issue": "Admin authorization incorrectly permits editors. Return True only for exact role 'admin'.",
+      "initial_source": "def can_admin(role):\n    return role in ['admin', 'editor']\n",
+      "reference_source": "def can_admin(role):\n    return role == 'admin'\n",
+      "public_cases": [
+        {
+          "args": [
+            "admin"
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "editor"
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            "viewer"
+          ],
+          "expected": false
+        }
+      ],
+      "hidden_cases": [
+        {
+          "args": [
+            "ADMIN"
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            ""
+          ],
+          "expected": false
+        }
+      ]
+    },
+    {
+      "id": "auth-005",
+      "category": "auth",
+      "function": "password_valid",
+      "issue": "Password minimum length rejects valid eight-character passwords. Require at least eight characters.",
+      "initial_source": "def password_valid(password):\n    return len(password) > 8\n",
+      "reference_source": "def password_valid(password):\n    return len(password) >= 8\n",
+      "public_cases": [
+        {
+          "args": [
+            "12345678"
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "short"
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            "123456789"
+          ],
+          "expected": true
+        }
+      ],
+      "hidden_cases": [
+        {
+          "args": [
+            ""
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            "éééééééé"
+          ],
+          "expected": true
+        }
+      ]
+    },
+    {
+      "id": "pagination-001",
+      "category": "pagination",
+      "function": "offset",
+      "issue": "Page numbers start at 1. Compute the zero-based row offset.",
+      "initial_source": "def offset(page, size):\n    return page * size\n",
+      "reference_source": "def offset(page, size):\n    return (page - 1) * size\n",
+      "public_cases": [
+        {
+          "args": [
+            1,
+            10
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            2,
+            10
+          ],
+          "expected": 10
+        },
+        {
+          "args": [
+            3,
+            5
+          ],
+          "expected": 10
+        }
+      ],
+      "hidden_cases": [
+        {
+          "args": [
+            1,
+            1
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            6,
+            7
+          ],
+          "expected": 35
+        }
+      ]
+    },
+    {
+      "id": "pagination-002",
+      "category": "pagination",
+      "function": "page_count",
+      "issue": "Page counts round down and lose the partial last page. Return ceiling(total / size); size is positive.",
+      "initial_source": "def page_count(total, size):\n    return total // size\n",
+      "reference_source": "def page_count(total, size):\n    return (total + size - 1) // size\n",
+      "public_cases": [
+        {
+          "args": [
+            11,
+            10
+          ],
+          "expected": 2
+        },
+        {
+          "args": [
+            20,
+            10
+          ],
+          "expected": 2
+        },
+        {
+          "args": [
+            0,
+            10
+          ],
+          "expected": 0
+        }
+      ],
+      "hidden_cases": [
+        {
+          "args": [
+            1,
+            100
+          ],
+          "expected": 1
+        },
+        {
+          "args": [
+            25,
+            6
+          ],
+          "expected": 5
+        }
+      ]
+    },
+    {
+      "id": "pagination-003",
+      "category": "pagination",
+      "function": "page_items",
+      "issue": "Page slicing treats size as an absolute endpoint. Return up to size elements starting at start.",
+      "initial_source": "def page_items(items, start, size):\n    return items[start:size]\n",
+      "reference_source": "def page_items(items, start, size):\n    return items[start:start + size]\n",
+      "public_cases": [
+        {
+          "args": [
+            [
+              1,
+              2,
+              3,
+              4
+            ],
+            1,
+            2
+          ],
+          "expected": [
+            2,
+            3
+          ]
+        },
+        {
+          "args": [
+            [
+              1,
+              2
+            ],
+            0,
+            1
+          ],
+          "expected": [
+            1
+          ]
+        },
+        {
+          "args": [
+            [
+              1,
+              2,
+              3
+            ],
+            2,
+            4
+          ],
+          "expected": [
+            3
+          ]
+        }
+      ],
+      "hidden_cases": [
+        {
+          "args": [
+            [],
+            0,
+            2
+          ],
+          "expected": []
+        },
+        {
+          "args": [
+            [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            3,
+            1
+          ],
+          "expected": [
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pagination-004",
+      "category": "pagination",
+      "function": "has_next",
+      "issue": "The last full page claims another page exists. Return whether page * size is strictly less than total.",
+      "initial_source": "def has_next(page, size, total):\n    return page * size <= total\n",
+      "reference_source": "def has_next(page, size, total):\n    return page * size < total\n",
+      "public_cases": [
+        {
+          "args": [
+            1,
+            10,
+            10
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            1,
+            10,
+            11
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            2,
+            10,
+            15
+          ],
+          "expected": false
+        }
+      ],
+      "hidden_cases": [
+        {
+          "args": [
+            1,
+            1,
+            0
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            2,
+            3,
+            7
+          ],
+          "expected": true
+        }
+      ]
+    },
+    {
+      "id": "pagination-005",
+      "category": "pagination",
+      "function": "normalize_page",
+      "issue": "Negative and zero page numbers must normalize to 1; positive pages remain unchanged.",
+      "initial_source": "def normalize_page(page):\n    return min(1, page)\n",
+      "reference_source": "def normalize_page(page):\n    return max(1, page)\n",
+      "public_cases": [
+        {
+          "args": [
+            0
+          ],
+          "expected": 1
+        },
+        {
+          "args": [
+            3
+          ],
+          "expected": 3
+        },
+        {
+          "args": [
+            -4
+          ],
+          "expected": 1
+        }
+      ],
+      "hidden_cases": [
+        {
+          "args": [
+            1
+          ],
+          "expected": 1
+        },
+        {
+          "args": [
+            20
+          ],
+          "expected": 20
+        }
+      ]
+    },
+    {
+      "id": "numeric-001",
+      "category": "numeric",
+      "function": "percentage",
+      "issue": "Percentage returns a ratio instead of percent. Zero total returns 0.0.",
+      "initial_source": "def percentage(part, total):\n    return part / total if total else 0.0\n",
+      "reference_source": "def percentage(part, total):\n    return part / total * 100 if total else 0.0\n",
+      "public_cases": [
+        {
+          "args": [
+            1,
+            4
+          ],
+          "expected": 25.0
+        },
+        {
+          "args": [
+            0,
+            0
+          ],
+          "expected": 0.0
+        },
+        {
+          "args": [
+            3,
+            3
+          ],
+          "expected": 100.0
+        }
+      ],
+      "hidden_cases": [
+        {
+          "args": [
+            1,
+            8
+          ],
+          "expected": 12.5
+        },
+        {
+          "args": [
+            0,
+            8
+          ],
+          "expected": 0.0
+        }
+      ]
+    },
+    {
+      "id": "numeric-002",
+      "category": "numeric",
+      "function": "discount_price",
+      "issue": "Discount is subtracted as a fixed amount. Apply the given percentage discount.",
+      "initial_source": "def discount_price(price, percent):\n    return price - percent\n",
+      "reference_source": "def discount_price(price, percent):\n    return price * (1 - percent / 100)\n",
+      "public_cases": [
+        {
+          "args": [
+            200,
+            10
+          ],
+          "expected": 180.0
+        },
+        {
+          "args": [
+            100,
+            0
+          ],
+          "expected": 100.0
+        },
+        {
+          "args": [
+            80,
+            25
+          ],
+          "expected": 60.0
+        }
+      ],
+      "hidden_cases": [
+        {
+          "args": [
+            50,
+            100
+          ],
+          "expected": 0.0
+        },
+        {
+          "args": [
+            40,
+            50
+          ],
+          "expected": 20.0
+        }
+      ]
+    },
+    {
+      "id": "numeric-003",
+      "category": "numeric",
+      "function": "average",
+      "issue": "Average divides by one too many. Return arithmetic mean, or 0.0 for empty input.",
+      "initial_source": "def average(values):\n    return sum(values) / (len(values) + 1)\n",
+      "reference_source": "def average(values):\n    return sum(values) / len(values) if values else 0.0\n",
+      "public_cases": [
+        {
+          "args": [
+            [
+              2,
+              4
+            ]
+          ],
+          "expected": 3.0
+        },
+        {
+          "args": [
+            []
+          ],
+          "expected": 0.0
+        },
+        {
+          "args": [
+            [
+              5
+            ]
+          ],
+          "expected": 5.0
+        }
+      ],
+      "hidden_cases": [
+        {
+          "args": [
+            [
+              -2,
+              2
+            ]
+          ],
+          "expected": 0.0
+        },
+        {
+          "args": [
+            [
+              3,
+              6,
+              9
+            ]
+          ],
+          "expected": 6.0
+        }
+      ]
+    },
+    {
+      "id": "numeric-004",
+      "category": "numeric",
+      "function": "clamp",
+      "issue": "Clamp always returns low. Constrain value to inclusive bounds, where low <= high.",
+      "initial_source": "def clamp(value, low, high):\n    return min(low, max(high, value))\n",
+      "reference_source": "def clamp(value, low, high):\n    return max(low, min(high, value))\n",
+      "public_cases": [
+        {
+          "args": [
+            5,
+            0,
+            10
+          ],
+          "expected": 5
+        },
+        {
+          "args": [
+            -3,
+            0,
+            10
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            20,
+            0,
+            10
+          ],
+          "expected": 10
+        }
+      ],
+      "hidden_cases": [
+        {
+          "args": [
+            0,
+            0,
+            0
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            -5,
+            -10,
+            -2
+          ],
+          "expected": -5
+        }
+      ]
+    },
+    {
+      "id": "numeric-005",
+      "category": "numeric",
+      "function": "ceil_div",
+      "issue": "Integer division loses remainders. Return ceiling division for nonnegative values and positive divisors.",
+      "initial_source": "def ceil_div(value, divisor):\n    return value // divisor\n",
+      "reference_source": "def ceil_div(value, divisor):\n    return (value + divisor - 1) // divisor\n",
+      "public_cases": [
+        {
+          "args": [
+            5,
+            2
+          ],
+          "expected": 3
+        },
+        {
+          "args": [
+            6,
+            3
+          ],
+          "expected": 2
+        },
+        {
+          "args": [
+            0,
+            7
+          ],
+          "expected": 0
+        }
+      ],
+      "hidden_cases": [
+        {
+          "args": [
+            1,
+            8
+          ],
+          "expected": 1
+        },
+        {
+          "args": [
+            19,
+            4
+          ],
+          "expected": 5
+        }
+      ]
+    },
+    {
+      "id": "text-001",
+      "category": "text",
+      "function": "slug",
+      "issue": "Slug generation misses case and surrounding whitespace. Strip, lowercase, then replace each space with a hyphen.",
+      "initial_source": "def slug(text):\n    return text.replace(' ', '-')\n",
+      "reference_source": "def slug(text):\n    return text.strip().lower().replace(' ', '-')\n",
+      "public_cases": [
+        {
+          "args": [
+            " Hello World "
+          ],
+          "expected": "hello-world"
+        },
+        {
+          "args": [
+            "ABC"
+          ],
+          "expected": "abc"
+        },
+        {
+          "args": [
+            "a b"
+          ],
+          "expected": "a-b"
+        }
+      ],
+      "hidden_cases": [
+        {
+          "args": [
+            ""
+          ],
+          "expected": ""
+        },
+        {
+          "args": [
+            " X  Y "
+          ],
+          "expected": "x--y"
+        }
+      ]
+    },
+    {
+      "id": "text-002",
+      "category": "text",
+      "function": "file_extension",
+      "issue": "File extension should be lowercase text after the last dot, or empty when no dot exists.",
+      "initial_source": "def file_extension(filename):\n    return filename.split('.')[-1]\n",
+      "reference_source": "def file_extension(filename):\n    return filename.split('.')[-1].lower() if '.' in filename else ''\n",
+      "public_cases": [
+        {
+          "args": [
+            "a.PDF"
+          ],
+          "expected": "pdf"
+        },
+        {
+          "args": [
+            "README"
+          ],
+          "expected": ""
+        },
+        {
+          "args": [
+            "a.tar.gz"
+          ],
+          "expected": "gz"
+        }
+      ],
+      "hidden_cases": [
+        {
+          "args": [
+            "x."
+          ],
+          "expected": ""
+        },
+        {
+          "args": [
+            "PHOTO.JPG"
+          ],
+          "expected": "jpg"
+        }
+      ]
+    },
+    {
+      "id": "text-003",
+      "category": "text",
+      "function": "remove_prefix",
+      "issue": "Prefix removal deletes matching interior text. Remove prefix exactly once only when text starts with it.",
+      "initial_source": "def remove_prefix(text, prefix):\n    return text.replace(prefix, '')\n",
+      "reference_source": "def remove_prefix(text, prefix):\n    return text[len(prefix):] if text.startswith(prefix) else text\n",
+      "public_cases": [
+        {
+          "args": [
+            "prevaluepre",
+            "pre"
+          ],
+          "expected": "valuepre"
+        },
+        {
+          "args": [
+            "valuepre",
+            "pre"
+          ],
+          "expected": "valuepre"
+        },
+        {
+          "args": [
+            "prex",
+            "pre"
+          ],
+          "expected": "x"
+        }
+      ],
+      "hidden_cases": [
+        {
+          "args": [
+            "x",
+            ""
+          ],
+          "expected": "x"
+        },
+        {
+          "args": [
+            "abc",
+            "z"
+          ],
+          "expected": "abc"
+        }
+      ]
+    },
+    {
+      "id": "text-004",
+      "category": "text",
+      "function": "preview",
+      "issue": "Preview returns one character too many. Return the first limit characters; nonnegative limit.",
+      "initial_source": "def preview(text, limit):\n    return text[:limit + 1]\n",
+      "reference_source": "def preview(text, limit):\n    return text[:limit]\n",
+      "public_cases": [
+        {
+          "args": [
+            "abcdef",
+            3
+          ],
+          "expected": "abc"
+        },
+        {
+          "args": [
+            "a",
+            5
+          ],
+          "expected": "a"
+        },
+        {
+          "args": [
+            "abc",
+            0
+          ],
+          "expected": ""
+        }
+      ],
+      "hidden_cases": [
+        {
+          "args": [
+            "",
+            0
+          ],
+          "expected": ""
+        },
+        {
+          "args": [
+            "éabc",
+            1
+          ],
+          "expected": "é"
+        }
+      ]
+    },
+    {
+      "id": "text-005",
+      "category": "text",
+      "function": "normalize_email",
+      "issue": "Email normalization leaves whitespace. Strip edges and lowercase the full address.",
+      "initial_source": "def normalize_email(email):\n    return email.lower()\n",
+      "reference_source": "def normalize_email(email):\n    return email.strip().lower()\n",
+      "public_cases": [
+        {
+          "args": [
+            " A@B.COM "
+          ],
+          "expected": "a@b.com"
+        },
+        {
+          "args": [
+            "X@Y.io"
+          ],
+          "expected": "x@y.io"
+        },
+        {
+          "args": [
+            "\ta@b.c\n"
+          ],
+          "expected": "a@b.c"
+        }
+      ],
+      "hidden_cases": [
+        {
+          "args": [
+            ""
+          ],
+          "expected": ""
+        },
+        {
+          "args": [
+            " q+X@B.C "
+          ],
+          "expected": "q+x@b.c"
+        }
+      ]
+    },
+    {
+      "id": "collections-001",
+      "category": "collections",
+      "function": "last_or_none",
+      "issue": "Last item helper returns the first item. Return the last item or None for empty input.",
+      "initial_source": "def last_or_none(items):\n    return items[0] if items else None\n",
+      "reference_source": "def last_or_none(items):\n    return items[-1] if items else None\n",
+      "public_cases": [
+        {
+          "args": [
+            [
+              1,
+              2,
+              3
+            ]
+          ],
+          "expected": 3
+        },
+        {
+          "args": [
+            []
+          ],
+          "expected": null
+        },
+        {
+          "args": [
+            [
+              7
+            ]
+          ],
+          "expected": 7
+        }
+      ],
+      "hidden_cases": [
+        {
+          "args": [
+            [
+              null,
+              false
+            ]
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            [
+              "a",
+              "b"
+            ]
+          ],
+          "expected": "b"
+        }
+      ]
+    },
+    {
+      "id": "collections-002",
+      "category": "collections",
+      "function": "sorted_unique",
+      "issue": "Sorted output retains duplicates. Return sorted distinct integers.",
+      "initial_source": "def sorted_unique(items):\n    return sorted(items)\n",
+      "reference_source": "def sorted_unique(items):\n    return sorted(set(items))\n",
+      "public_cases": [
+        {
+          "args": [
+            [
+              3,
+              1,
+              3
+            ]
+          ],
+          "expected": [
+            1,
+            3
+          ]
+        },
+        {
+          "args": [
+            []
+          ],
+          "expected": []
+        },
+        {
+          "args": [
+            [
+              2,
+              2
+            ]
+          ],
+          "expected": [
+            2
+          ]
+        }
+      ],
+      "hidden_cases": [
+        {
+          "args": [
+            [
+              -1,
+              0,
+              -1
+            ]
+          ],
+          "expected": [
+            -1,
+            0
+          ]
+        },
+        {
+          "args": [
+            [
+              5,
+              3,
+              4
+            ]
+          ],
+          "expected": [
+            3,
+            4,
+            5
+          ]
+        }
+      ]
+    },
+    {
+      "id": "collections-003",
+      "category": "collections",
+      "function": "contains",
+      "issue": "Membership is inverted. Return True when value exists in items.",
+      "initial_source": "def contains(items, value):\n    return value not in items\n",
+      "reference_source": "def contains(items, value):\n    return value in items\n",
+      "public_cases": [
+        {
+          "args": [
+            [
+              1,
+              2
+            ],
+            2
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            [
+              1
+            ],
+            3
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            [],
+            0
+          ],
+          "expected": false
+        }
+      ],
+      "hidden_cases": [
+        {
+          "args": [
+            [
+              null
+            ],
+            null
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            [
+              "x"
+            ],
+            "x"
+          ],
+          "expected": true
+        }
+      ]
+    },
+    {
+      "id": "collections-004",
+      "category": "collections",
+      "function": "get_default",
+      "issue": "Fallback overwrites valid falsey values. Use default only for missing keys.",
+      "initial_source": "def get_default(mapping, key, default):\n    return mapping.get(key) or default\n",
+      "reference_source": "def get_default(mapping, key, default):\n    return mapping.get(key, default)\n",
+      "public_cases": [
+        {
+          "args": [
+            {
+              "x": 0
+            },
+            "x",
+            9
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            {},
+            "x",
+            9
+          ],
+          "expected": 9
+        },
+        {
+          "args": [
+            {
+              "x": false
+            },
+            "x",
+            true
+          ],
+          "expected": false
+        }
+      ],
+      "hidden_cases": [
+        {
+          "args": [
+            {
+              "x": null
+            },
+            "x",
+            9
+          ],
+          "expected": null
+        },
+        {
+          "args": [
+            {
+              "x": ""
+            },
+            "x",
+            "d"
+          ],
+          "expected": ""
+        }
+      ]
+    },
+    {
+      "id": "collections-005",
+      "category": "collections",
+      "function": "rotate_left",
+      "issue": "Rotation uses raw offset and fails above list length. Rotate left modulo length; empty list stays empty.",
+      "initial_source": "def rotate_left(items, amount):\n    return items[amount:] + items[:amount]\n",
+      "reference_source": "def rotate_left(items, amount):\n    return items[amount % len(items):] + items[:amount % len(items)] if items else []\n",
+      "public_cases": [
+        {
+          "args": [
+            [
+              1,
+              2,
+              3
+            ],
+            4
+          ],
+          "expected": [
+            2,
+            3,
+            1
+          ]
+        },
+        {
+          "args": [
+            [],
+            5
+          ],
+          "expected": []
+        },
+        {
+          "args": [
+            [
+              1,
+              2,
+              3
+            ],
+            1
+          ],
+          "expected": [
+            2,
+            3,
+            1
+          ]
+        }
+      ],
+      "hidden_cases": [
+        {
+          "args": [
+            [
+              1,
+              2
+            ],
+            0
+          ],
+          "expected": [
+            1,
+            2
+          ]
+        },
+        {
+          "args": [
+            [
+              1,
+              2,
+              3
+            ],
+            -1
+          ],
+          "expected": [
+            3,
+            1,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "id": "validation-001",
+      "category": "validation",
+      "function": "age_allowed",
+      "issue": "Eligible ages include both 18 and 65. Return whether age is in that inclusive range.",
+      "initial_source": "def age_allowed(age):\n    return 18 < age < 65\n",
+      "reference_source": "def age_allowed(age):\n    return 18 <= age <= 65\n",
+      "public_cases": [
+        {
+          "args": [
+            18
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            65
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            17
+          ],
+          "expected": false
+        }
+      ],
+      "hidden_cases": [
+        {
+          "args": [
+            40
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            66
+          ],
+          "expected": false
+        }
+      ]
+    },
+    {
+      "id": "validation-002",
+      "category": "validation",
+      "function": "valid_port",
+      "issue": "Port validation permits 0 and rejects 65535. Valid integer ports range from 1 through 65535.",
+      "initial_source": "def valid_port(port):\n    return 0 <= port < 65535\n",
+      "reference_source": "def valid_port(port):\n    return 1 <= port <= 65535\n",
+      "public_cases": [
+        {
+          "args": [
+            0
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            65535
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            80
+          ],
+          "expected": true
+        }
+      ],
+      "hidden_cases": [
+        {
+          "args": [
+            -1
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            65536
+          ],
+          "expected": false
+        }
+      ]
+    },
+    {
+      "id": "validation-003",
+      "category": "validation",
+      "function": "ranges_overlap",
+      "issue": "Closed intervals [a,b] and [c,d] overlap even at shared endpoints. Bounds are ordered.",
+      "initial_source": "def ranges_overlap(a, b, c, d):\n    return a < d and c < b\n",
+      "reference_source": "def ranges_overlap(a, b, c, d):\n    return a <= d and c <= b\n",
+      "public_cases": [
+        {
+          "args": [
+            1,
+            3,
+            3,
+            5
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            1,
+            2,
+            4,
+            5
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            1,
+            5,
+            2,
+            3
+          ],
+          "expected": true
+        }
+      ],
+      "hidden_cases": [
+        {
+          "args": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            -5,
+            -3,
+            -2,
+            0
+          ],
+          "expected": false
+        }
+      ]
+    },
+    {
+      "id": "validation-004",
+      "category": "validation",
+      "function": "leap_year",
+      "issue": "Leap year rule ignores centuries. Gregorian years divide by 4, except centuries unless divisible by 400.",
+      "initial_source": "def leap_year(year):\n    return year % 4 == 0\n",
+      "reference_source": "def leap_year(year):\n    return year % 4 == 0 and (year % 100 != 0 or year % 400 == 0)\n",
+      "public_cases": [
+        {
+          "args": [
+            1900
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            2000
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            2024
+          ],
+          "expected": true
+        }
+      ],
+      "hidden_cases": [
+        {
+          "args": [
+            2023
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            2100
+          ],
+          "expected": false
+        }
+      ]
+    },
+    {
+      "id": "validation-005",
+      "category": "validation",
+      "function": "is_even",
+      "issue": "Even-number helper is reversed, including for zero and negatives.",
+      "initial_source": "def is_even(number):\n    return number % 2 != 0\n",
+      "reference_source": "def is_even(number):\n    return number % 2 == 0\n",
+      "public_cases": [
+        {
+          "args": [
+            0
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            3
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            4
+          ],
+          "expected": true
+        }
+      ],
+      "hidden_cases": [
+        {
+          "args": [
+            -2
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            -3
+          ],
+          "expected": false
+        }
+      ]
+    },
+    {
+      "id": "finance-001",
+      "category": "finance",
+      "function": "with_tax",
+      "issue": "Tax total adds rate as currency. Add net multiplied by the fractional tax rate.",
+      "initial_source": "def with_tax(net, rate):\n    return net + rate\n",
+      "reference_source": "def with_tax(net, rate):\n    return net * (1 + rate)\n",
+      "public_cases": [
+        {
+          "args": [
+            100,
+            0.25
+          ],
+          "expected": 125.0
+        },
+        {
+          "args": [
+            80,
+            0.5
+          ],
+          "expected": 120.0
+        },
+        {
+          "args": [
+            0,
+            0.1
+          ],
+          "expected": 0.0
+        }
+      ],
+      "hidden_cases": [
+        {
+          "args": [
+            10,
+            0.0
+          ],
+          "expected": 10.0
+        },
+        {
+          "args": [
+            40,
+            0.25
+          ],
+          "expected": 50.0
+        }
+      ]
+    },
+    {
+      "id": "finance-002",
+      "category": "finance",
+      "function": "to_cents",
+      "issue": "Cent conversion truncates fractional cents. Round amount * 100 using Python's round, then return int.",
+      "initial_source": "def to_cents(amount):\n    return int(amount * 100)\n",
+      "reference_source": "def to_cents(amount):\n    return int(round(amount * 100))\n",
+      "public_cases": [
+        {
+          "args": [
+            1.239
+          ],
+          "expected": 124
+        },
+        {
+          "args": [
+            1.231
+          ],
+          "expected": 123
+        },
+        {
+          "args": [
+            0.0
+          ],
+          "expected": 0
+        }
+      ],
+      "hidden_cases": [
+        {
+          "args": [
+            2.999
+          ],
+          "expected": 300
+        },
+        {
+          "args": [
+            -1.239
+          ],
+          "expected": -124
+        }
+      ]
+    },
+    {
+      "id": "finance-003",
+      "category": "finance",
+      "function": "capped_fee",
+      "issue": "Fee cap acts as a minimum. Return the smaller of amount * rate and cap.",
+      "initial_source": "def capped_fee(amount, rate, cap):\n    return max(amount * rate, cap)\n",
+      "reference_source": "def capped_fee(amount, rate, cap):\n    return min(amount * rate, cap)\n",
+      "public_cases": [
+        {
+          "args": [
+            100,
+            0.1,
+            5
+          ],
+          "expected": 5
+        },
+        {
+          "args": [
+            10,
+            0.1,
+            5
+          ],
+          "expected": 1.0
+        },
+        {
+          "args": [
+            0,
+            0.1,
+            5
+          ],
+          "expected": 0.0
+        }
+      ],
+      "hidden_cases": [
+        {
+          "args": [
+            50,
+            0.1,
+            5
+          ],
+          "expected": 5.0
+        },
+        {
+          "args": [
+            1000,
+            0.02,
+            10
+          ],
+          "expected": 10
+        }
+      ]
+    },
+    {
+      "id": "finance-004",
+      "category": "finance",
+      "function": "line_total",
+      "issue": "Invoice line adds quantity to price. Multiply the two values.",
+      "initial_source": "def line_total(quantity, unit_price):\n    return quantity + unit_price\n",
+      "reference_source": "def line_total(quantity, unit_price):\n    return quantity * unit_price\n",
+      "public_cases": [
+        {
+          "args": [
+            3,
+            10
+          ],
+          "expected": 30
+        },
+        {
+          "args": [
+            0,
+            5
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            1,
+            7
+          ],
+          "expected": 7
+        }
+      ],
+      "hidden_cases": [
+        {
+          "args": [
+            2,
+            2.5
+          ],
+          "expected": 5.0
+        },
+        {
+          "args": [
+            4,
+            0
+          ],
+          "expected": 0
+        }
+      ]
+    },
+    {
+      "id": "finance-005",
+      "category": "finance",
+      "function": "change_due",
+      "issue": "Change sign is reversed. Return paid minus total, including negative balances.",
+      "initial_source": "def change_due(paid, total):\n    return total - paid\n",
+      "reference_source": "def change_due(paid, total):\n    return paid - total\n",
+      "public_cases": [
+        {
+          "args": [
+            20,
+            15
+          ],
+          "expected": 5
+        },
+        {
+          "args": [
+            10,
+            10
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            5,
+            10
+          ],
+          "expected": -5
+        }
+      ],
+      "hidden_cases": [
+        {
+          "args": [
+            0,
+            0
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            25,
+            7
+          ],
+          "expected": 18
+        }
+      ]
+    },
+    {
+      "id": "units-001",
+      "category": "units",
+      "function": "celsius_to_f",
+      "issue": "Celsius conversion omits the Fahrenheit offset. Use C * 9 / 5 + 32.",
+      "initial_source": "def celsius_to_f(celsius):\n    return celsius * 9 / 5\n",
+      "reference_source": "def celsius_to_f(celsius):\n    return celsius * 9 / 5 + 32\n",
+      "public_cases": [
+        {
+          "args": [
+            0
+          ],
+          "expected": 32.0
+        },
+        {
+          "args": [
+            100
+          ],
+          "expected": 212.0
+        },
+        {
+          "args": [
+            -40
+          ],
+          "expected": -40.0
+        }
+      ],
+      "hidden_cases": [
+        {
+          "args": [
+            10
+          ],
+          "expected": 50.0
+        },
+        {
+          "args": [
+            20
+          ],
+          "expected": 68.0
+        }
+      ]
+    },
+    {
+      "id": "units-002",
+      "category": "units",
+      "function": "km_to_miles",
+      "issue": "Kilometer conversion uses the inverse factor. Multiply kilometers by exactly 0.625 for this contract.",
+      "initial_source": "def km_to_miles(km):\n    return km / 0.625\n",
+      "reference_source": "def km_to_miles(km):\n    return km * 0.625\n",
+      "public_cases": [
+        {
+          "args": [
+            8
+          ],
+          "expected": 5.0
+        },
+        {
+          "args": [
+            0
+          ],
+          "expected": 0.0
+        },
+        {
+          "args": [
+            16
+          ],
+          "expected": 10.0
+        }
+      ],
+      "hidden_cases": [
+        {
+          "args": [
+            1
+          ],
+          "expected": 0.625
+        },
+        {
+          "args": [
+            4
+          ],
+          "expected": 2.5
+        }
+      ]
+    },
+    {
+      "id": "units-003",
+      "category": "units",
+      "function": "minutes_to_seconds",
+      "issue": "Minute conversion divides by 60. Return minutes multiplied by 60.",
+      "initial_source": "def minutes_to_seconds(minutes):\n    return minutes // 60\n",
+      "reference_source": "def minutes_to_seconds(minutes):\n    return minutes * 60\n",
+      "public_cases": [
+        {
+          "args": [
+            1
+          ],
+          "expected": 60
+        },
+        {
+          "args": [
+            2
+          ],
+          "expected": 120
+        },
+        {
+          "args": [
+            0
+          ],
+          "expected": 0
+        }
+      ],
+      "hidden_cases": [
+        {
+          "args": [
+            10
+          ],
+          "expected": 600
+        },
+        {
+          "args": [
+            3
+          ],
+          "expected": 180
+        }
+      ]
+    },
+    {
+      "id": "units-004",
+      "category": "units",
+      "function": "rectangle_area",
+      "issue": "Rectangle area computes perimeter instead. Return width * height.",
+      "initial_source": "def rectangle_area(width, height):\n    return 2 * (width + height)\n",
+      "reference_source": "def rectangle_area(width, height):\n    return width * height\n",
+      "public_cases": [
+        {
+          "args": [
+            3,
+            4
+          ],
+          "expected": 12
+        },
+        {
+          "args": [
+            0,
+            4
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            5,
+            5
+          ],
+          "expected": 25
+        }
+      ],
+      "hidden_cases": [
+        {
+          "args": [
+            1,
+            7
+          ],
+          "expected": 7
+        },
+        {
+          "args": [
+            2,
+            3
+          ],
+          "expected": 6
+        }
+      ]
+    },
+    {
+      "id": "units-005",
+      "category": "units",
+      "function": "speed",
+      "issue": "Speed multiplies distance by time. Divide instead, returning 0.0 when time is zero.",
+      "initial_source": "def speed(distance, hours):\n    return distance * hours\n",
+      "reference_source": "def speed(distance, hours):\n    return distance / hours if hours else 0.0\n",
+      "public_cases": [
+        {
+          "args": [
+            100,
+            2
+          ],
+          "expected": 50.0
+        },
+        {
+          "args": [
+            0,
+            2
+          ],
+          "expected": 0.0
+        },
+        {
+          "args": [
+            10,
+            0
+          ],
+          "expected": 0.0
+        }
+      ],
+      "hidden_cases": [
+        {
+          "args": [
+            9,
+            3
+          ],
+          "expected": 3.0
+        },
+        {
+          "args": [
+            5,
+            1
+          ],
+          "expected": 5.0
+        }
+      ]
+    },
+    {
+      "id": "logic-001",
+      "category": "logic",
+      "function": "exclusive_or",
+      "issue": "Boolean exclusive-or currently behaves as OR. True exactly when Boolean inputs differ.",
+      "initial_source": "def exclusive_or(a, b):\n    return a or b\n",
+      "reference_source": "def exclusive_or(a, b):\n    return a != b\n",
+      "public_cases": [
+        {
+          "args": [
+            true,
+            true
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            true,
+            false
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            false,
+            false
+          ],
+          "expected": false
+        }
+      ],
+      "hidden_cases": [
+        {
+          "args": [
+            false,
+            true
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            true,
+            true
+          ],
+          "expected": false
+        }
+      ]
+    },
+    {
+      "id": "logic-002",
+      "category": "logic",
+      "function": "majority",
+      "issue": "Voting accepts a single yes vote. Require at least two of three Boolean inputs.",
+      "initial_source": "def majority(a, b, c):\n    return a or b or c\n",
+      "reference_source": "def majority(a, b, c):\n    return (a and b) or (a and c) or (b and c)\n",
+      "public_cases": [
+        {
+          "args": [
+            true,
+            false,
+            false
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            true,
+            true,
+            false
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            false,
+            false,
+            false
+          ],
+          "expected": false
+        }
+      ],
+      "hidden_cases": [
+        {
+          "args": [
+            false,
+            true,
+            true
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            true,
+            true,
+            true
+          ],
+          "expected": true
+        }
+      ]
+    },
+    {
+      "id": "logic-003",
+      "category": "logic",
+      "function": "is_weekend",
+      "issue": "Weekdays use Monday=0 through Sunday=6. Only 5 and 6 are weekend; invalid indices return False.",
+      "initial_source": "def is_weekend(day):\n    return day >= 5\n",
+      "reference_source": "def is_weekend(day):\n    return day in [5, 6]\n",
+      "public_cases": [
+        {
+          "args": [
+            5
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            6
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            7
+          ],
+          "expected": false
+        }
+      ],
+      "hidden_cases": [
+        {
+          "args": [
+            4
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            -1
+          ],
+          "expected": false
+        }
+      ]
+    },
+    {
+      "id": "logic-004",
+      "category": "logic",
+      "function": "strictly_between",
+      "issue": "Strict bounds accidentally include endpoints. Require low < value < high.",
+      "initial_source": "def strictly_between(value, low, high):\n    return low <= value <= high\n",
+      "reference_source": "def strictly_between(value, low, high):\n    return low < value < high\n",
+      "public_cases": [
+        {
+          "args": [
+            0,
+            0,
+            10
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            10,
+            0,
+            10
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            5,
+            0,
+            10
+          ],
+          "expected": true
+        }
+      ],
+      "hidden_cases": [
+        {
+          "args": [
+            -1,
+            0,
+            10
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            1,
+            1,
+            1
+          ],
+          "expected": false
+        }
+      ]
+    },
+    {
+      "id": "logic-005",
+      "category": "logic",
+      "function": "can_write",
+      "issue": "Inactive admins can write and active viewers can write. Require active AND role in ['admin', 'editor'].",
+      "initial_source": "def can_write(active, role):\n    return active or role == 'admin'\n",
+      "reference_source": "def can_write(active, role):\n    return active and role in ['admin', 'editor']\n",
+      "public_cases": [
+        {
+          "args": [
+            false,
+            "admin"
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            true,
+            "viewer"
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            true,
+            "editor"
+          ],
+          "expected": true
+        }
+      ],
+      "hidden_cases": [
+        {
+          "args": [
+            true,
+            "admin"
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            false,
+            "editor"
+          ],
+          "expected": false
+        }
+      ]
+    },
+    {
+      "id": "strings-001",
+      "category": "strings",
+      "function": "ends_with",
+      "issue": "Suffix helper checks the start. Check whether text ends with suffix.",
+      "initial_source": "def ends_with(text, suffix):\n    return text.startswith(suffix)\n",
+      "reference_source": "def ends_with(text, suffix):\n    return text.endswith(suffix)\n",
+      "public_cases": [
+        {
+          "args": [
+            "report.pdf",
+            ".pdf"
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "pdf-report",
+            "pdf"
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            "abc",
+            "x"
+          ],
+          "expected": false
+        }
+      ],
+      "hidden_cases": [
+        {
+          "args": [
+            "abc",
+            ""
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "xabc",
+            "abc"
+          ],
+          "expected": true
+        }
+      ]
+    },
+    {
+      "id": "strings-002",
+      "category": "strings",
+      "function": "split_csv",
+      "issue": "Simple comma-separated parser uses semicolons. Split on commas, preserving empty fields; no quoting support.",
+      "initial_source": "def split_csv(text):\n    return text.split(';')\n",
+      "reference_source": "def split_csv(text):\n    return text.split(',')\n",
+      "public_cases": [
+        {
+          "args": [
+            "a,b"
+          ],
+          "expected": [
+            "a",
+            "b"
+          ]
+        },
+        {
+          "args": [
+            "a,,b"
+          ],
+          "expected": [
+            "a",
+            "",
+            "b"
+          ]
+        },
+        {
+          "args": [
+            ""
+          ],
+          "expected": [
+            ""
+          ]
+        }
+      ],
+      "hidden_cases": [
+        {
+          "args": [
+            "x"
+          ],
+          "expected": [
+            "x"
+          ]
+        },
+        {
+          "args": [
+            "x,y,z"
+          ],
+          "expected": [
+            "x",
+            "y",
+            "z"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "strings-003",
+      "category": "strings",
+      "function": "reverse_text",
+      "issue": "Reverse helper returns input unchanged. Reverse Unicode code points.",
+      "initial_source": "def reverse_text(text):\n    return text\n",
+      "reference_source": "def reverse_text(text):\n    return text[::-1]\n",
+      "public_cases": [
+        {
+          "args": [
+            "abc"
+          ],
+          "expected": "cba"
+        },
+        {
+          "args": [
+            ""
+          ],
+          "expected": ""
+        },
+        {
+          "args": [
+            "a"
+          ],
+          "expected": "a"
+        }
+      ],
+      "hidden_cases": [
+        {
+          "args": [
+            "éx"
+          ],
+          "expected": "xé"
+        },
+        {
+          "args": [
+            "1234"
+          ],
+          "expected": "4321"
+        }
+      ]
+    },
+    {
+      "id": "strings-004",
+      "category": "strings",
+      "function": "repeat",
+      "issue": "Repeater adds one unwanted copy. Repeat text count times for nonnegative count.",
+      "initial_source": "def repeat(text, count):\n    return text * (count + 1)\n",
+      "reference_source": "def repeat(text, count):\n    return text * count\n",
+      "public_cases": [
+        {
+          "args": [
+            "a",
+            2
+          ],
+          "expected": "aa"
+        },
+        {
+          "args": [
+            "x",
+            0
+          ],
+          "expected": ""
+        },
+        {
+          "args": [
+            "ab",
+            1
+          ],
+          "expected": "ab"
+        }
+      ],
+      "hidden_cases": [
+        {
+          "args": [
+            "",
+            3
+          ],
+          "expected": ""
+        },
+        {
+          "args": [
+            "é",
+            3
+          ],
+          "expected": "ééé"
+        }
+      ]
+    },
+    {
+      "id": "strings-005",
+      "category": "strings",
+      "function": "is_palindrome",
+      "issue": "Palindrome check is inverted. Compare text to its reverse, case-sensitive, no normalization.",
+      "initial_source": "def is_palindrome(text):\n    return text != text[::-1]\n",
+      "reference_source": "def is_palindrome(text):\n    return text == text[::-1]\n",
+      "public_cases": [
+        {
+          "args": [
+            "aba"
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "ab"
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            ""
+          ],
+          "expected": true
+        }
+      ],
+      "hidden_cases": [
+        {
+          "args": [
+            "x"
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "Aa"
+          ],
+          "expected": false
+        }
+      ]
+    }
+  ]
+}

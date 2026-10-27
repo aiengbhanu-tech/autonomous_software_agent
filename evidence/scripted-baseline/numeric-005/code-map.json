@@ -1,0 +1,15 @@
+[
+  {
+    "path": "src/solution.py",
+    "sha256": "bc6e1dc73639368f404d9178e504156a1635f7e9521dc40801ab78b28532f247",
+    "lines": 2,
+    "symbols": [
+      {
+        "name": "ceil_div",
+        "line": 1,
+        "kind": "FunctionDef"
+      }
+    ],
+    "imports": []
+  }
+]

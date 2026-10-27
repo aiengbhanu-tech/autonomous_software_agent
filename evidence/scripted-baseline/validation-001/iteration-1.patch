@@ -1,0 +1,6 @@
+--- a/src/solution.py
++++ b/src/solution.py
+@@ -1,2 +1,2 @@
+ def age_allowed(age):
+-    return 18 < age < 65
++    return 18 <= age <= 65

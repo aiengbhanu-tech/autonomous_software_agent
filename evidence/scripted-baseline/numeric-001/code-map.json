@@ -1,0 +1,15 @@
+[
+  {
+    "path": "src/solution.py",
+    "sha256": "3cf176bef2fd5b51f6c3c0ac56fe3a9640a5039ba17211419e16454d8b230fe2",
+    "lines": 2,
+    "symbols": [
+      {
+        "name": "percentage",
+        "line": 1,
+        "kind": "FunctionDef"
+      }
+    ],
+    "imports": []
+  }
+]

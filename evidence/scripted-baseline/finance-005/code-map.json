@@ -1,0 +1,15 @@
+[
+  {
+    "path": "src/solution.py",
+    "sha256": "0d741896e3cb0d23e1902ff431e5902151340411f6d85b870c4885986ce2988a",
+    "lines": 2,
+    "symbols": [
+      {
+        "name": "change_due",
+        "line": 1,
+        "kind": "FunctionDef"
+      }
+    ],
+    "imports": []
+  }
+]

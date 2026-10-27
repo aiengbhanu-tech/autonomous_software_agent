@@ -1,0 +1,15 @@
+[
+  {
+    "path": "src/solution.py",
+    "sha256": "4947973c68a8e501fd95f157bff1c2d0f8d1c95ab16ce1aff8f0e0ab7a293205",
+    "lines": 2,
+    "symbols": [
+      {
+        "name": "is_even",
+        "line": 1,
+        "kind": "FunctionDef"
+      }
+    ],
+    "imports": []
+  }
+]

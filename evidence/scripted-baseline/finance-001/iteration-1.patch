@@ -1,0 +1,6 @@
+--- a/src/solution.py
++++ b/src/solution.py
+@@ -1,2 +1,2 @@
+ def with_tax(net, rate):
+-    return net + rate
++    return net * (1 + rate)

@@ -1,0 +1,6 @@
+--- a/src/solution.py
++++ b/src/solution.py
+@@ -1,2 +1,2 @@
+ def speed(distance, hours):
+-    return distance * hours
++    return distance / hours if hours else 0.0

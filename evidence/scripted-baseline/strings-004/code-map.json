@@ -1,0 +1,15 @@
+[
+  {
+    "path": "src/solution.py",
+    "sha256": "a0583d3ff40baf912129b3c1e81eaf5f8a3a2d13d477f44070eafdcc33051cae",
+    "lines": 2,
+    "symbols": [
+      {
+        "name": "repeat",
+        "line": 1,
+        "kind": "FunctionDef"
+      }
+    ],
+    "imports": []
+  }
+]

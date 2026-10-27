@@ -1,0 +1,15 @@
+[
+  {
+    "path": "src/solution.py",
+    "sha256": "e533011392ca491f8edc6aefb0b3c19574a01aa51843908657e2eae1906d804a",
+    "lines": 2,
+    "symbols": [
+      {
+        "name": "offset",
+        "line": 1,
+        "kind": "FunctionDef"
+      }
+    ],
+    "imports": []
+  }
+]

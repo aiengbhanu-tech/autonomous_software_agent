@@ -1,0 +1,15 @@
+[
+  {
+    "path": "src/solution.py",
+    "sha256": "b5d5ce3d79b8866e62e4b4865386cc4c4ecb53e88110816e8333ac53b98d6543",
+    "lines": 2,
+    "symbols": [
+      {
+        "name": "clean_token",
+        "line": 1,
+        "kind": "FunctionDef"
+      }
+    ],
+    "imports": []
+  }
+]

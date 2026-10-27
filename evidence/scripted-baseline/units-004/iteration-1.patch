@@ -1,0 +1,6 @@
+--- a/src/solution.py
++++ b/src/solution.py
+@@ -1,2 +1,2 @@
+ def rectangle_area(width, height):
+-    return 2 * (width + height)
++    return width * height

@@ -1,0 +1,15 @@
+[
+  {
+    "path": "src/solution.py",
+    "sha256": "a5e2745329b35ac25d0dc90d4ad82fb9ce074cf464c505c840dd1e5f7c29876b",
+    "lines": 2,
+    "symbols": [
+      {
+        "name": "last_or_none",
+        "line": 1,
+        "kind": "FunctionDef"
+      }
+    ],
+    "imports": []
+  }
+]

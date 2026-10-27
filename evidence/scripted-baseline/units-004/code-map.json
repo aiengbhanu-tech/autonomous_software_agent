@@ -1,0 +1,15 @@
+[
+  {
+    "path": "src/solution.py",
+    "sha256": "51abe3925e0e8306cd5dae7d87225ab46462bac5ea7432bb87afc6368e472daa",
+    "lines": 2,
+    "symbols": [
+      {
+        "name": "rectangle_area",
+        "line": 1,
+        "kind": "FunctionDef"
+      }
+    ],
+    "imports": []
+  }
+]

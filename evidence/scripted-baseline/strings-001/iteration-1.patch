@@ -1,0 +1,6 @@
+--- a/src/solution.py
++++ b/src/solution.py
+@@ -1,2 +1,2 @@
+ def ends_with(text, suffix):
+-    return text.startswith(suffix)
++    return text.endswith(suffix)

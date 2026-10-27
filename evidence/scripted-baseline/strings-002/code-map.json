@@ -1,0 +1,15 @@
+[
+  {
+    "path": "src/solution.py",
+    "sha256": "4e2533574669c39bf7bb9e6f2b741a6b9feff15f1798060a62cde1f196931ca4",
+    "lines": 2,
+    "symbols": [
+      {
+        "name": "split_csv",
+        "line": 1,
+        "kind": "FunctionDef"
+      }
+    ],
+    "imports": []
+  }
+]

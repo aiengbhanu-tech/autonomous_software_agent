@@ -1,0 +1,15 @@
+[
+  {
+    "path": "src/solution.py",
+    "sha256": "474e19f1434564412aa2632d7befc478b9aea7156177e76f46471d721cba228d",
+    "lines": 2,
+    "symbols": [
+      {
+        "name": "password_valid",
+        "line": 1,
+        "kind": "FunctionDef"
+      }
+    ],
+    "imports": []
+  }
+]

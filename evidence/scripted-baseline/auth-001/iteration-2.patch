@@ -1,0 +1,6 @@
+--- a/src/solution.py
++++ b/src/solution.py
+@@ -1,2 +1,2 @@
+ def authentication_status(password):
+-    return 200 if len(password) <= 72 else 422
++    return 200 if len(password.encode('utf-8')) <= 72 else 422

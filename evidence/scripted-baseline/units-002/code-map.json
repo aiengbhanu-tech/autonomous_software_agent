@@ -1,0 +1,15 @@
+[
+  {
+    "path": "src/solution.py",
+    "sha256": "cc403278e5d8d1b5f172a6b30eaf198ff0d0b7f70530defbf5e5b0e0c6c344b8",
+    "lines": 2,
+    "symbols": [
+      {
+        "name": "km_to_miles",
+        "line": 1,
+        "kind": "FunctionDef"
+      }
+    ],
+    "imports": []
+  }
+]

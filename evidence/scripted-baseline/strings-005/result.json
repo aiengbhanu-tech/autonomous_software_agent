@@ -1,0 +1,50 @@
+{
+  "task_id": "strings-005",
+  "status": "resolved",
+  "reason": "Hidden contracts and public checks passed",
+  "provider": "scripted-oracle",
+  "model": "none",
+  "response_models": [],
+  "backend": "bounded-ast",
+  "iterations": 1,
+  "latency_s": 0.0028711020001992438,
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "calls": 0,
+    "complete": true,
+    "input_rate": 0.0,
+    "output_rate": 0.0,
+    "total_tokens": 0,
+    "cost_usd": 0.0
+  },
+  "baseline": {
+    "status": "failed",
+    "passed": 0,
+    "failed": 3,
+    "output": "case 1: AssertionError: expected True; got False\ncase 2: AssertionError: expected False; got True\ncase 3: AssertionError: expected True; got False",
+    "duration_s": 8.33159999729105e-05,
+    "backend": "bounded-ast"
+  },
+  "public_tests": {
+    "status": "passed",
+    "passed": 3,
+    "failed": 0,
+    "output": "",
+    "duration_s": 0.00013933899981566356,
+    "backend": "bounded-ast"
+  },
+  "hidden_tests": {
+    "status": "passed",
+    "passed": 2,
+    "failed": 0,
+    "output": "",
+    "duration_s": 6.61090000448894e-05,
+    "backend": "bounded-ast"
+  },
+  "repository_sha256": "e0ad163b997435cb3f6fbf9cb2a708f48265eb4601060103147e5f2f21c50ecb",
+  "patch_sha256": "42501a2fdf5e6ad055fbfd0dd6f625e55b6ea9838cca2fd6758ff9333b41d284",
+  "issue_sha256": "2161b5c59695a41f1051709507ef3096cc1826ea6ff8076c91beefa45957d8f2",
+  "created_at": "2026-10-27T05:12:19.276313+00:00",
+  "python": "3.12.14"
+}

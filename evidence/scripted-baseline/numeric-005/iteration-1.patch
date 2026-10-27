@@ -1,0 +1,6 @@
+--- a/src/solution.py
++++ b/src/solution.py
+@@ -1,2 +1,2 @@
+ def ceil_div(value, divisor):
+-    return value // divisor
++    return (value + divisor - 1) // divisor

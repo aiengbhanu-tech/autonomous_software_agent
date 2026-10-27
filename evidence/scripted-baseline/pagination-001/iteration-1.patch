@@ -1,0 +1,6 @@
+--- a/src/solution.py
++++ b/src/solution.py
+@@ -1,2 +1,2 @@
+ def offset(page, size):
+-    return page * size
++    return (page - 1) * size

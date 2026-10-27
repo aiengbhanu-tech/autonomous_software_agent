@@ -1,0 +1,6 @@
+--- a/src/solution.py
++++ b/src/solution.py
+@@ -1,2 +1,2 @@
+ def celsius_to_f(celsius):
+-    return celsius * 9 / 5
++    return celsius * 9 / 5 + 32

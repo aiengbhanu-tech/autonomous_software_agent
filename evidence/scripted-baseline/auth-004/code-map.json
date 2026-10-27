@@ -1,0 +1,15 @@
+[
+  {
+    "path": "src/solution.py",
+    "sha256": "fb6e392cdc4870ce24003c72d0f75ebcf9d26ea318d77e262c79171eaf22d42b",
+    "lines": 2,
+    "symbols": [
+      {
+        "name": "can_admin",
+        "line": 1,
+        "kind": "FunctionDef"
+      }
+    ],
+    "imports": []
+  }
+]

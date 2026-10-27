@@ -1,0 +1,15 @@
+[
+  {
+    "path": "src/solution.py",
+    "sha256": "1a572bf67cd426cfc9bd8da4ea4e841f91cf8242e2991a5b5e84961e79674cff",
+    "lines": 2,
+    "symbols": [
+      {
+        "name": "page_items",
+        "line": 1,
+        "kind": "FunctionDef"
+      }
+    ],
+    "imports": []
+  }
+]

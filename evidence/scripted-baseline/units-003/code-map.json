@@ -1,0 +1,15 @@
+[
+  {
+    "path": "src/solution.py",
+    "sha256": "690f3ad2ab7c4cb75e0c17433cb173a03047705a12ae7190e2853a380ae7a0dc",
+    "lines": 2,
+    "symbols": [
+      {
+        "name": "minutes_to_seconds",
+        "line": 1,
+        "kind": "FunctionDef"
+      }
+    ],
+    "imports": []
+  }
+]

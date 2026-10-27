@@ -1,0 +1,15 @@
+[
+  {
+    "path": "src/solution.py",
+    "sha256": "09a46752fa215b02a2de701086cdd4069905d837e47ecbe0f4a26c8a6805e72c",
+    "lines": 2,
+    "symbols": [
+      {
+        "name": "get_default",
+        "line": 1,
+        "kind": "FunctionDef"
+      }
+    ],
+    "imports": []
+  }
+]

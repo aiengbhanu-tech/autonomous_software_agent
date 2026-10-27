@@ -1,0 +1,15 @@
+[
+  {
+    "path": "src/solution.py",
+    "sha256": "69255a7e4dd3c3fac08d4a4c87b28e0528a300267c8b899691c76082881328d7",
+    "lines": 2,
+    "symbols": [
+      {
+        "name": "age_allowed",
+        "line": 1,
+        "kind": "FunctionDef"
+      }
+    ],
+    "imports": []
+  }
+]

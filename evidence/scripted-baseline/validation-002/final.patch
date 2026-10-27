@@ -1,0 +1,6 @@
+--- a/src/solution.py
++++ b/src/solution.py
+@@ -1,2 +1,2 @@
+ def valid_port(port):
+-    return 0 <= port < 65535
++    return 1 <= port <= 65535

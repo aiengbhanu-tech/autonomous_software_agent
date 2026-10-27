@@ -1,0 +1,6 @@
+--- a/src/solution.py
++++ b/src/solution.py
+@@ -1,2 +1,2 @@
+ def exclusive_or(a, b):
+-    return a or b
++    return a != b

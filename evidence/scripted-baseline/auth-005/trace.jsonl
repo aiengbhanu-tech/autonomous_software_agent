@@ -1,0 +1,10 @@
+{"sequence": 1, "stage": "repo_analyzer", "elapsed_s": 0.000662, "code_map": [{"path": "src/solution.py", "sha256": "474e19f1434564412aa2632d7befc478b9aea7156177e76f46471d721cba228d", "lines": 2, "symbols": [{"name": "password_valid", "line": 1, "kind": "FunctionDef"}], "imports": []}], "repository_sha256": "22afbc97f17b290e0fd450a508b934c3f36a34b0433c8f3b953886cfa24b5e8b"}
+{"sequence": 2, "stage": "baseline_tests", "elapsed_s": 0.000918, "result": {"status": "failed", "passed": 2, "failed": 1, "output": "case 1: AssertionError: expected True; got False", "duration_s": 7.00959999448969e-05, "backend": "bounded-ast"}}
+{"sequence": 3, "stage": "planner", "elapsed_s": 0.000983, "plan": {"hypothesis": "SCRIPTED ORACLE: apply a supplied reference solution to validate orchestration.", "steps": ["Reproduce failure", "Apply fixture patch", "Run fixed checks", "Review result"]}}
+{"sequence": 4, "stage": "code_search", "elapsed_s": 0.001342, "paths": ["src/solution.py"]}
+{"sequence": 5, "stage": "hypothesis", "elapsed_s": 0.001378, "text": "SCRIPTED ORACLE: supplied reference patch.", "iteration": 1}
+{"sequence": 6, "stage": "patch_generator", "elapsed_s": 0.001896, "iteration": 1, "paths": ["src/solution.py"]}
+{"sequence": 7, "stage": "sandbox_tests", "elapsed_s": 0.002197, "iteration": 1, "result": {"status": "passed", "passed": 3, "failed": 0, "output": "", "duration_s": 0.0002382190000389528, "backend": "bounded-ast"}}
+{"sequence": 8, "stage": "hidden_grader", "elapsed_s": 0.002336, "iteration": 1, "result": {"status": "passed", "passed": 2, "failed": 0, "output": "", "duration_s": 5.564399998547742e-05, "backend": "bounded-ast"}}
+{"sequence": 9, "stage": "critic", "elapsed_s": 0.002367, "iteration": 1, "decision": "accept", "reason": "All configured checks passed.", "feedback": ""}
+{"sequence": 10, "stage": "pr_draft", "elapsed_s": 0.002695, "status": "resolved", "patch_sha256": "3404ad3caa47971511748655251c634c07897c57d3d1f6880adc0cb84605fd30"}

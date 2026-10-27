@@ -1,0 +1,15 @@
+{"sequence": 1, "stage": "repo_analyzer", "elapsed_s": 0.000908, "code_map": [{"path": "src/solution.py", "sha256": "23cc00b07f1911b3b613bac6896cbd5b7ac061369f80686cf8a03b5422ef3488", "lines": 2, "symbols": [{"name": "authentication_status", "line": 1, "kind": "FunctionDef"}], "imports": []}], "repository_sha256": "0acadca22fc0e6287938c3191454266cbecdabaf9dd51c44375102dc16d00485"}
+{"sequence": 2, "stage": "baseline_tests", "elapsed_s": 0.001431, "result": {"status": "failed", "passed": 1, "failed": 2, "output": "case 2: AssertionError: expected 422; got 500\ncase 3: AssertionError: expected 422; got 500", "duration_s": 0.00010718099997575337, "backend": "bounded-ast"}}
+{"sequence": 3, "stage": "planner", "elapsed_s": 0.001717, "plan": {"hypothesis": "SCRIPTED ORACLE: apply a supplied reference solution to validate orchestration.", "steps": ["Reproduce failure", "Apply fixture patch", "Run fixed checks", "Review result"]}}
+{"sequence": 4, "stage": "code_search", "elapsed_s": 0.002031, "paths": ["src/solution.py"]}
+{"sequence": 5, "stage": "hypothesis", "elapsed_s": 0.002069, "text": "SCRIPTED ORACLE: UTF-8 bytes may differ from character counts.", "iteration": 1}
+{"sequence": 6, "stage": "patch_generator", "elapsed_s": 0.002655, "iteration": 1, "paths": ["src/solution.py"]}
+{"sequence": 7, "stage": "sandbox_tests", "elapsed_s": 0.003011, "iteration": 1, "result": {"status": "failed", "passed": 2, "failed": 1, "output": "case 3: AssertionError: expected 422; got 200", "duration_s": 0.00014784199993300717, "backend": "bounded-ast"}}
+{"sequence": 8, "stage": "critic", "elapsed_s": 0.003065, "iteration": 1, "decision": "revise", "reason": "Public tests failed or collected no passes.", "feedback": "case 3: AssertionError: expected 422; got 200"}
+{"sequence": 9, "stage": "code_search", "elapsed_s": 0.003537, "paths": ["src/solution.py"]}
+{"sequence": 10, "stage": "hypothesis", "elapsed_s": 0.003576, "text": "SCRIPTED ORACLE: UTF-8 bytes may differ from character counts.", "iteration": 2}
+{"sequence": 11, "stage": "patch_generator", "elapsed_s": 0.003931, "iteration": 2, "paths": ["src/solution.py"]}
+{"sequence": 12, "stage": "sandbox_tests", "elapsed_s": 0.004084, "iteration": 2, "result": {"status": "passed", "passed": 3, "failed": 0, "output": "", "duration_s": 9.267900009035657e-05, "backend": "bounded-ast"}}
+{"sequence": 13, "stage": "hidden_grader", "elapsed_s": 0.004301, "iteration": 2, "result": {"status": "passed", "passed": 3, "failed": 0, "output": "", "duration_s": 8.160299989867781e-05, "backend": "bounded-ast"}}
+{"sequence": 14, "stage": "critic", "elapsed_s": 0.004336, "iteration": 2, "decision": "accept", "reason": "All configured checks passed.", "feedback": ""}
+{"sequence": 15, "stage": "pr_draft", "elapsed_s": 0.004822, "status": "resolved", "patch_sha256": "b9a3c93cdfedc227e8c18ea822b13a78e605ec2c23f4b34fac24d119ce5124de"}

@@ -1,0 +1,15 @@
+[
+  {
+    "path": "src/solution.py",
+    "sha256": "408aa7c67070050fd5fe796270c9556ad3e116431898fa92b92f37ca7a8d45ac",
+    "lines": 2,
+    "symbols": [
+      {
+        "name": "capped_fee",
+        "line": 1,
+        "kind": "FunctionDef"
+      }
+    ],
+    "imports": []
+  }
+]

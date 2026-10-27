@@ -1,0 +1,6 @@
+--- a/src/solution.py
++++ b/src/solution.py
+@@ -1,2 +1,2 @@
+ def rotate_left(items, amount):
+-    return items[amount:] + items[:amount]
++    return items[amount % len(items):] + items[:amount % len(items)] if items else []

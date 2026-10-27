@@ -1,0 +1,15 @@
+[
+  {
+    "path": "src/solution.py",
+    "sha256": "76fcf9e15ba9f912b141fae34d6bd87c6fbaf183f197766105960bee54ce0097",
+    "lines": 2,
+    "symbols": [
+      {
+        "name": "reverse_text",
+        "line": 1,
+        "kind": "FunctionDef"
+      }
+    ],
+    "imports": []
+  }
+]

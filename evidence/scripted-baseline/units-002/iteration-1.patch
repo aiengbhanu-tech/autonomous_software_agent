@@ -1,0 +1,6 @@
+--- a/src/solution.py
++++ b/src/solution.py
+@@ -1,2 +1,2 @@
+ def km_to_miles(km):
+-    return km / 0.625
++    return km * 0.625

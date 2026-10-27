@@ -1,0 +1,31 @@
+name: Verify agent and sandbox
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  unit-and-contracts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s tests -v
+      - run: python -m forgefix verify-benchmark
+      - run: python -m forgefix benchmark --provider scripted --out runs/ci-baseline
+      - uses: actions/upload-artifact@v4
+        with:
+          name: scripted-harness-results
+          path: runs/ci-baseline
+  docker-isolation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: docker build -f Dockerfile.sandbox -t forgefix-sandbox:local .
+      - run: python -m unittest discover -s tests -p test_docker_integration.py -v
+        env:
+          FORGEFIX_DOCKER_TESTS: '1'
+

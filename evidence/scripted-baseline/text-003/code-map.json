@@ -1,0 +1,15 @@
+[
+  {
+    "path": "src/solution.py",
+    "sha256": "1e8ace84afd3cc2ea4acdf7601855356b694ec6745802978b7a7f16d7e8384e5",
+    "lines": 2,
+    "symbols": [
+      {
+        "name": "remove_prefix",
+        "line": 1,
+        "kind": "FunctionDef"
+      }
+    ],
+    "imports": []
+  }
+]

@@ -1,0 +1,8 @@
+# Operator builds this trusted image, separately from untrusted repositories.
+# For reproducible deployment, replace the base tag with a verified image digest.
+FROM python:3.12-slim
+RUN useradd --uid 65534 --non-unique --no-create-home --shell /usr/sbin/nologin forgefix
+USER 65534:65534
+WORKDIR /tmp
+ENTRYPOINT ["python"]
+

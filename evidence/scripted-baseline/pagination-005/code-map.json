@@ -1,0 +1,15 @@
+[
+  {
+    "path": "src/solution.py",
+    "sha256": "e5b3a6f308dc878b86a3851d4f61d68aa809da662b76bdead8236cd166957978",
+    "lines": 2,
+    "symbols": [
+      {
+        "name": "normalize_page",
+        "line": 1,
+        "kind": "FunctionDef"
+      }
+    ],
+    "imports": []
+  }
+]

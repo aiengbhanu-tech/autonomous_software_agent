@@ -1,0 +1,15 @@
+[
+  {
+    "path": "src/solution.py",
+    "sha256": "174b0c05e26959c12766c4fe41ab5230f7eebbbe906a77577c4094f84722210b",
+    "lines": 2,
+    "symbols": [
+      {
+        "name": "sorted_unique",
+        "line": 1,
+        "kind": "FunctionDef"
+      }
+    ],
+    "imports": []
+  }
+]

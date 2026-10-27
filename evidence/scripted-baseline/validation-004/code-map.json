@@ -1,0 +1,15 @@
+[
+  {
+    "path": "src/solution.py",
+    "sha256": "089e1cce47e09d67fc2c591a4a8450273eb7cde0b9d984e98677c1614c0fcb1e",
+    "lines": 2,
+    "symbols": [
+      {
+        "name": "leap_year",
+        "line": 1,
+        "kind": "FunctionDef"
+      }
+    ],
+    "imports": []
+  }
+]

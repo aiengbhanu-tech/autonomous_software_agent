@@ -1,0 +1,10 @@
+{"sequence": 1, "stage": "repo_analyzer", "elapsed_s": 0.000644, "code_map": [{"path": "src/solution.py", "sha256": "e5b3a6f308dc878b86a3851d4f61d68aa809da662b76bdead8236cd166957978", "lines": 2, "symbols": [{"name": "normalize_page", "line": 1, "kind": "FunctionDef"}], "imports": []}], "repository_sha256": "58bcf2a01ac34420aec076240001284076f54c2f8a757877a00b100720cc2f95"}
+{"sequence": 2, "stage": "baseline_tests", "elapsed_s": 0.000897, "result": {"status": "failed", "passed": 0, "failed": 3, "output": "case 1: AssertionError: expected 1; got 0\ncase 2: AssertionError: expected 3; got 1\ncase 3: AssertionError: expected 1; got -4", "duration_s": 6.436700004996965e-05, "backend": "bounded-ast"}}
+{"sequence": 3, "stage": "planner", "elapsed_s": 0.000963, "plan": {"hypothesis": "SCRIPTED ORACLE: apply a supplied reference solution to validate orchestration.", "steps": ["Reproduce failure", "Apply fixture patch", "Run fixed checks", "Review result"]}}
+{"sequence": 4, "stage": "code_search", "elapsed_s": 0.001292, "paths": ["src/solution.py"]}
+{"sequence": 5, "stage": "hypothesis", "elapsed_s": 0.001335, "text": "SCRIPTED ORACLE: supplied reference patch.", "iteration": 1}
+{"sequence": 6, "stage": "patch_generator", "elapsed_s": 0.001791, "iteration": 1, "paths": ["src/solution.py"]}
+{"sequence": 7, "stage": "sandbox_tests", "elapsed_s": 0.001929, "iteration": 1, "result": {"status": "passed", "passed": 3, "failed": 0, "output": "", "duration_s": 7.96100000570732e-05, "backend": "bounded-ast"}}
+{"sequence": 8, "stage": "hidden_grader", "elapsed_s": 0.002031, "iteration": 1, "result": {"status": "passed", "passed": 2, "failed": 0, "output": "", "duration_s": 4.1732999989108066e-05, "backend": "bounded-ast"}}
+{"sequence": 9, "stage": "critic", "elapsed_s": 0.002058, "iteration": 1, "decision": "accept", "reason": "All configured checks passed.", "feedback": ""}
+{"sequence": 10, "stage": "pr_draft", "elapsed_s": 0.00251, "status": "resolved", "patch_sha256": "fd116661cd0a2893b143f35719055f59ae5ce1482213e1e2f8d1a04e41c82456"}

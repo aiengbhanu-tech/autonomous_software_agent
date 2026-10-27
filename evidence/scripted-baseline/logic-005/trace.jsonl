@@ -1,0 +1,10 @@
+{"sequence": 1, "stage": "repo_analyzer", "elapsed_s": 0.000827, "code_map": [{"path": "src/solution.py", "sha256": "2e161907dd107ccb2e7932e7721ce93fea102d7f1c0576eca4fd0b850e81c504", "lines": 2, "symbols": [{"name": "can_write", "line": 1, "kind": "FunctionDef"}], "imports": []}], "repository_sha256": "72f98aa45aa46781fbe795dca3cf7d86420d6212fc809f35d076502f3aa6b395"}
+{"sequence": 2, "stage": "baseline_tests", "elapsed_s": 0.001097, "result": {"status": "failed", "passed": 1, "failed": 2, "output": "case 1: AssertionError: expected False; got True\ncase 2: AssertionError: expected False; got True", "duration_s": 7.082600018293306e-05, "backend": "bounded-ast"}}
+{"sequence": 3, "stage": "planner", "elapsed_s": 0.001198, "plan": {"hypothesis": "SCRIPTED ORACLE: apply a supplied reference solution to validate orchestration.", "steps": ["Reproduce failure", "Apply fixture patch", "Run fixed checks", "Review result"]}}
+{"sequence": 4, "stage": "code_search", "elapsed_s": 0.001445, "paths": ["src/solution.py"]}
+{"sequence": 5, "stage": "hypothesis", "elapsed_s": 0.001474, "text": "SCRIPTED ORACLE: supplied reference patch.", "iteration": 1}
+{"sequence": 6, "stage": "patch_generator", "elapsed_s": 0.001796, "iteration": 1, "paths": ["src/solution.py"]}
+{"sequence": 7, "stage": "sandbox_tests", "elapsed_s": 0.001967, "iteration": 1, "result": {"status": "passed", "passed": 3, "failed": 0, "output": "", "duration_s": 0.00010126299980584008, "backend": "bounded-ast"}}
+{"sequence": 8, "stage": "hidden_grader", "elapsed_s": 0.002087, "iteration": 1, "result": {"status": "passed", "passed": 2, "failed": 0, "output": "", "duration_s": 5.460300008053309e-05, "backend": "bounded-ast"}}
+{"sequence": 9, "stage": "critic", "elapsed_s": 0.002117, "iteration": 1, "decision": "accept", "reason": "All configured checks passed.", "feedback": ""}
+{"sequence": 10, "stage": "pr_draft", "elapsed_s": 0.002543, "status": "resolved", "patch_sha256": "43598e68e1ae66626bf01c6fec583901b3354fd12480d759243d444928452807"}

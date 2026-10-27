@@ -1,0 +1,6 @@
+--- a/src/solution.py
++++ b/src/solution.py
+@@ -1,2 +1,2 @@
+ def repeat(text, count):
+-    return text * (count + 1)
++    return text * count

@@ -1,0 +1,15 @@
+[
+  {
+    "path": "src/solution.py",
+    "sha256": "fe1449ec73de34b69141b3ffee833737964cd84363ebd95a33c43e38f4e38181",
+    "lines": 2,
+    "symbols": [
+      {
+        "name": "rotate_left",
+        "line": 1,
+        "kind": "FunctionDef"
+      }
+    ],
+    "imports": []
+  }
+]

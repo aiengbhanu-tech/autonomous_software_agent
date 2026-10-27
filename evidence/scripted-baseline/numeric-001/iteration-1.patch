@@ -1,0 +1,6 @@
+--- a/src/solution.py
++++ b/src/solution.py
+@@ -1,2 +1,2 @@
+ def percentage(part, total):
+-    return part / total if total else 0.0
++    return part / total * 100 if total else 0.0

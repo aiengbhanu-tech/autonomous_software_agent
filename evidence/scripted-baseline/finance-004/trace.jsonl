@@ -1,0 +1,10 @@
+{"sequence": 1, "stage": "repo_analyzer", "elapsed_s": 0.0006, "code_map": [{"path": "src/solution.py", "sha256": "8f175d583575ab8fa8f998718300b6f422e15d72519a07b1c3428177bdf607da", "lines": 2, "symbols": [{"name": "line_total", "line": 1, "kind": "FunctionDef"}], "imports": []}], "repository_sha256": "bb828e1dbfb141e6f403e4a15ec45645e0dde608ea4b1589f6d73987ac86552d"}
+{"sequence": 2, "stage": "baseline_tests", "elapsed_s": 0.000826, "result": {"status": "failed", "passed": 0, "failed": 3, "output": "case 1: AssertionError: expected 30; got 13\ncase 2: AssertionError: expected 0; got 5\ncase 3: AssertionError: expected 7; got 8", "duration_s": 5.844800011800544e-05, "backend": "bounded-ast"}}
+{"sequence": 3, "stage": "planner", "elapsed_s": 0.00097, "plan": {"hypothesis": "SCRIPTED ORACLE: apply a supplied reference solution to validate orchestration.", "steps": ["Reproduce failure", "Apply fixture patch", "Run fixed checks", "Review result"]}}
+{"sequence": 4, "stage": "code_search", "elapsed_s": 0.001547, "paths": ["src/solution.py"]}
+{"sequence": 5, "stage": "hypothesis", "elapsed_s": 0.001731, "text": "SCRIPTED ORACLE: supplied reference patch.", "iteration": 1}
+{"sequence": 6, "stage": "patch_generator", "elapsed_s": 0.002112, "iteration": 1, "paths": ["src/solution.py"]}
+{"sequence": 7, "stage": "sandbox_tests", "elapsed_s": 0.002346, "iteration": 1, "result": {"status": "passed", "passed": 3, "failed": 0, "output": "", "duration_s": 6.176300007609825e-05, "backend": "bounded-ast"}}
+{"sequence": 8, "stage": "hidden_grader", "elapsed_s": 0.002456, "iteration": 1, "result": {"status": "passed", "passed": 2, "failed": 0, "output": "", "duration_s": 4.596899998432491e-05, "backend": "bounded-ast"}}
+{"sequence": 9, "stage": "critic", "elapsed_s": 0.002485, "iteration": 1, "decision": "accept", "reason": "All configured checks passed.", "feedback": ""}
+{"sequence": 10, "stage": "pr_draft", "elapsed_s": 0.002966, "status": "resolved", "patch_sha256": "9cb2cd18e0fa5a7903c9c2f50c4bb34309027f9917385dd3832e0a3b721193e8"}

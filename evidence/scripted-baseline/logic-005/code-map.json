@@ -1,0 +1,15 @@
+[
+  {
+    "path": "src/solution.py",
+    "sha256": "2e161907dd107ccb2e7932e7721ce93fea102d7f1c0576eca4fd0b850e81c504",
+    "lines": 2,
+    "symbols": [
+      {
+        "name": "can_write",
+        "line": 1,
+        "kind": "FunctionDef"
+      }
+    ],
+    "imports": []
+  }
+]

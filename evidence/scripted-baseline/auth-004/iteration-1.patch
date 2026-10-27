@@ -1,0 +1,6 @@
+--- a/src/solution.py
++++ b/src/solution.py
+@@ -1,2 +1,2 @@
+ def can_admin(role):
+-    return role in ['admin', 'editor']
++    return role == 'admin'

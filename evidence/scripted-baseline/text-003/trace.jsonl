@@ -1,0 +1,10 @@
+{"sequence": 1, "stage": "repo_analyzer", "elapsed_s": 0.001482, "code_map": [{"path": "src/solution.py", "sha256": "1e8ace84afd3cc2ea4acdf7601855356b694ec6745802978b7a7f16d7e8384e5", "lines": 2, "symbols": [{"name": "remove_prefix", "line": 1, "kind": "FunctionDef"}], "imports": []}], "repository_sha256": "e8e23bd40ed12817c04e828d788f2f8fa6379709542f29646345b8a4962a405d"}
+{"sequence": 2, "stage": "baseline_tests", "elapsed_s": 0.001879, "result": {"status": "failed", "passed": 1, "failed": 2, "output": "case 1: AssertionError: expected 'valuepre'; got 'value'\ncase 2: AssertionError: expected 'valuepre'; got 'value'", "duration_s": 7.998999990377342e-05, "backend": "bounded-ast"}}
+{"sequence": 3, "stage": "planner", "elapsed_s": 0.001965, "plan": {"hypothesis": "SCRIPTED ORACLE: apply a supplied reference solution to validate orchestration.", "steps": ["Reproduce failure", "Apply fixture patch", "Run fixed checks", "Review result"]}}
+{"sequence": 4, "stage": "code_search", "elapsed_s": 0.00225, "paths": ["src/solution.py"]}
+{"sequence": 5, "stage": "hypothesis", "elapsed_s": 0.002282, "text": "SCRIPTED ORACLE: supplied reference patch.", "iteration": 1}
+{"sequence": 6, "stage": "patch_generator", "elapsed_s": 0.002733, "iteration": 1, "paths": ["src/solution.py"]}
+{"sequence": 7, "stage": "sandbox_tests", "elapsed_s": 0.002921, "iteration": 1, "result": {"status": "passed", "passed": 3, "failed": 0, "output": "", "duration_s": 0.00011852800002998265, "backend": "bounded-ast"}}
+{"sequence": 8, "stage": "hidden_grader", "elapsed_s": 0.003049, "iteration": 1, "result": {"status": "passed", "passed": 2, "failed": 0, "output": "", "duration_s": 6.730100017193763e-05, "backend": "bounded-ast"}}
+{"sequence": 9, "stage": "critic", "elapsed_s": 0.003077, "iteration": 1, "decision": "accept", "reason": "All configured checks passed.", "feedback": ""}
+{"sequence": 10, "stage": "pr_draft", "elapsed_s": 0.003325, "status": "resolved", "patch_sha256": "6ad01934ecb6e09d0f4b25c69edc2bf1f768ea5a356dc84a6eb47579f1077f8f"}

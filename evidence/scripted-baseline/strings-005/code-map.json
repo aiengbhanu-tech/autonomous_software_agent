@@ -1,0 +1,15 @@
+[
+  {
+    "path": "src/solution.py",
+    "sha256": "7dd6be868be746fc4ddf4e7bfc69b1a776ab5bc96984a5ece809cc26b410eb47",
+    "lines": 2,
+    "symbols": [
+      {
+        "name": "is_palindrome",
+        "line": 1,
+        "kind": "FunctionDef"
+      }
+    ],
+    "imports": []
+  }
+]

@@ -1,0 +1,6 @@
+--- a/src/solution.py
++++ b/src/solution.py
+@@ -1,2 +1,2 @@
+ def normalize_page(page):
+-    return min(1, page)
++    return max(1, page)

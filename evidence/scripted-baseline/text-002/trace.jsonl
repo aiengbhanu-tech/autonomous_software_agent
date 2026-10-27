@@ -1,0 +1,10 @@
+{"sequence": 1, "stage": "repo_analyzer", "elapsed_s": 0.000693, "code_map": [{"path": "src/solution.py", "sha256": "a243ee59cfebaed41a3d5268aa33ddb598149686c3cb1abed9c40cc6c810ebe6", "lines": 2, "symbols": [{"name": "file_extension", "line": 1, "kind": "FunctionDef"}], "imports": []}], "repository_sha256": "a6a3f5747e63212dbb5b5040bc672dd28d280495159b9578fcbe30961c9776db"}
+{"sequence": 2, "stage": "baseline_tests", "elapsed_s": 0.001472, "result": {"status": "failed", "passed": 1, "failed": 2, "output": "case 1: AssertionError: expected 'pdf'; got 'PDF'\ncase 2: AssertionError: expected ''; got 'README'", "duration_s": 0.00016726199987715518, "backend": "bounded-ast"}}
+{"sequence": 3, "stage": "planner", "elapsed_s": 0.00163, "plan": {"hypothesis": "SCRIPTED ORACLE: apply a supplied reference solution to validate orchestration.", "steps": ["Reproduce failure", "Apply fixture patch", "Run fixed checks", "Review result"]}}
+{"sequence": 4, "stage": "code_search", "elapsed_s": 0.001953, "paths": ["src/solution.py"]}
+{"sequence": 5, "stage": "hypothesis", "elapsed_s": 0.001987, "text": "SCRIPTED ORACLE: supplied reference patch.", "iteration": 1}
+{"sequence": 6, "stage": "patch_generator", "elapsed_s": 0.002393, "iteration": 1, "paths": ["src/solution.py"]}
+{"sequence": 7, "stage": "sandbox_tests", "elapsed_s": 0.002655, "iteration": 1, "result": {"status": "passed", "passed": 3, "failed": 0, "output": "", "duration_s": 0.00013962999992145342, "backend": "bounded-ast"}}
+{"sequence": 8, "stage": "hidden_grader", "elapsed_s": 0.002824, "iteration": 1, "result": {"status": "passed", "passed": 2, "failed": 0, "output": "", "duration_s": 8.793200004220125e-05, "backend": "bounded-ast"}}
+{"sequence": 9, "stage": "critic", "elapsed_s": 0.002888, "iteration": 1, "decision": "accept", "reason": "All configured checks passed.", "feedback": ""}
+{"sequence": 10, "stage": "pr_draft", "elapsed_s": 0.00356, "status": "resolved", "patch_sha256": "cbe01b5d0ba57ce431ba0deea55c15a796f375c82cfb25ce7ddf0c6e995b7850"}

@@ -1,0 +1,10 @@
+{"sequence": 1, "stage": "repo_analyzer", "elapsed_s": 0.000747, "code_map": [{"path": "src/solution.py", "sha256": "83eaa841655323ed37120ab5978c6730374a05ca0a97d4e168cfed0eaad05ca2", "lines": 2, "symbols": [{"name": "celsius_to_f", "line": 1, "kind": "FunctionDef"}], "imports": []}], "repository_sha256": "6eb0aa27cc0359f40d8667a83f7db83bfe9763971171e50df52218dcdd2fdf03"}
+{"sequence": 2, "stage": "baseline_tests", "elapsed_s": 0.001237, "result": {"status": "failed", "passed": 0, "failed": 3, "output": "case 1: AssertionError: expected 32.0; got 0.0\ncase 2: AssertionError: expected 212.0; got 180.0\ncase 3: AssertionError: expected -40.0; got -72.0", "duration_s": 7.30799999928422e-05, "backend": "bounded-ast"}}
+{"sequence": 3, "stage": "planner", "elapsed_s": 0.001303, "plan": {"hypothesis": "SCRIPTED ORACLE: apply a supplied reference solution to validate orchestration.", "steps": ["Reproduce failure", "Apply fixture patch", "Run fixed checks", "Review result"]}}
+{"sequence": 4, "stage": "code_search", "elapsed_s": 0.00163, "paths": ["src/solution.py"]}
+{"sequence": 5, "stage": "hypothesis", "elapsed_s": 0.001661, "text": "SCRIPTED ORACLE: supplied reference patch.", "iteration": 1}
+{"sequence": 6, "stage": "patch_generator", "elapsed_s": 0.001994, "iteration": 1, "paths": ["src/solution.py"]}
+{"sequence": 7, "stage": "sandbox_tests", "elapsed_s": 0.002143, "iteration": 1, "result": {"status": "passed", "passed": 3, "failed": 0, "output": "", "duration_s": 9.207899984176038e-05, "backend": "bounded-ast"}}
+{"sequence": 8, "stage": "hidden_grader", "elapsed_s": 0.002279, "iteration": 1, "result": {"status": "passed", "passed": 2, "failed": 0, "output": "", "duration_s": 5.2149000111967325e-05, "backend": "bounded-ast"}}
+{"sequence": 9, "stage": "critic", "elapsed_s": 0.002309, "iteration": 1, "decision": "accept", "reason": "All configured checks passed.", "feedback": ""}
+{"sequence": 10, "stage": "pr_draft", "elapsed_s": 0.002746, "status": "resolved", "patch_sha256": "6bf2637918ad292f2092a18c400ed718ac43fe16bba7be2a9f65deeb267a0df4"}

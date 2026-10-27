@@ -1,0 +1,15 @@
+[
+  {
+    "path": "src/solution.py",
+    "sha256": "23cc00b07f1911b3b613bac6896cbd5b7ac061369f80686cf8a03b5422ef3488",
+    "lines": 2,
+    "symbols": [
+      {
+        "name": "authentication_status",
+        "line": 1,
+        "kind": "FunctionDef"
+      }
+    ],
+    "imports": []
+  }
+]
